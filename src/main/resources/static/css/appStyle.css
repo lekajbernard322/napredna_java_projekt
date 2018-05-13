@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+.sidenav {
+	height: -webkit-fill-available;
+	width: 100%;
+	z-index: 1;
+	background-color: #111;
+	overflow-x: hidden;
+	padding-top: 30px;
+}
+
+.sidenav a {
+	padding: 8px 8px 8px 32px;
+	text-decoration: none;
+	font-size: 16px;
+	color: #818181;
+	display: block;
+}
+
+.sidenav a:hover {
+	color: #f1f1f1;
+}
