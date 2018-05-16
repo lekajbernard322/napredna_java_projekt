@@ -29,12 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					"select korisnicko_ime username, lozinka password, aktivan enabled from korisnik where korisnicko_ime=?")
 			.authoritiesByUsernameQuery(
 					"select korisnik username, uloga role from korisnik_uloga where korisnik=?")
-			.passwordEncoder(passwordEncoder())
-			.and()
-			.inMemoryAuthentication()
-			.withUser("admin")
-			.password("password")
-			.roles("ADMIN", "USER");
+			.passwordEncoder(passwordEncoder());
 	}
 	
 	@Bean

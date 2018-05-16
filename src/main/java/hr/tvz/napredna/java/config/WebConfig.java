@@ -10,6 +10,7 @@ import org.springframework.core.convert.converter.Converter;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 
+import hr.tvz.napredna.java.model.converters.ModelToKorisnikConverter;
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 
 @Configuration
@@ -22,7 +23,7 @@ public class WebConfig {
 		Set<Converter> converters = new HashSet<>();
 		
 		// tu se dodaju konverteri
-		// converters.add(new ModelToKorisnikConverter());
+		converters.add(new ModelToKorisnikConverter());
 		
 		factory.setConverters(converters);
 		return factory;
