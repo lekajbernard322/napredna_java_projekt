@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.firewall.StrictHttpFirewall;
 
 @Configuration
 @EnableWebSecurity
@@ -28,7 +29,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					"select korisnicko_ime username, lozinka password, aktivan enabled from korisnik where korisnicko_ime=?")
 			.authoritiesByUsernameQuery(
 					"select korisnik username, uloga role from korisnik_uloga where korisnik=?")
-			.passwordEncoder(passwordEncoder());
+			.passwordEncoder(passwordEncoder())
+			.and()
+			.inMemoryAuthentication()
+			.withUser("admin")
+			.password("password")
+			.roles("ADMIN", "USER");
 	}
 	
 	@Bean
@@ -41,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.csrf()
 				.disable()
-			.authorizeRequests()
+				.authorizeRequests()
 				.antMatchers("/registracija").anonymous()
 				.anyRequest().authenticated()
 				.and()

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{decorators/layout.html}">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.w3.org/1999/xhtml"
+	  layout:decorate="~{decorators/layout.html}">
 <head>
 	<meta charset="UTF-8"/>
 	<title>Insert title here</title>
@@ -8,7 +8,23 @@
 <body>
 
 	<section layout:fragment="content">
-		New content.
+		<br>
+		<div class="container">
+			<div th:if="${not #lists.isEmpty(projekti)}">
+				<table class="table table-striped">
+					<tr>
+						<th>Ime</th>
+						<th>Opis</th>
+					</tr>
+					<tr th:each="projekt : ${projekti}">
+						<a th:href="@{'/projekt/detalj/' + ${projekt.id}}">
+							<td><a th:href="@{'/projekt/detalji?id=' + ${projekt.id}}"><p th:text="${projekt.ime}"></p></a></td>
+							<td th:text="${projekt.opis}"></td>
+						</a>
+					</tr>
+				</table>
+			</div>
+		</div>
 	</section>
 
 </body>
