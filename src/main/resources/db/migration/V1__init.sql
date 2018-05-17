@@ -27,6 +27,33 @@ CREATE TABLE korisnik_projekt(
 	FOREIGN KEY (projekt_id) REFERENCES projekt(id)
 );
 
+CREATE TABLE zadatak(
+	id int IDENTITY PRIMARY KEY,
+	ime VARCHAR(50) NOT NULL,
+	opis VARCHAR(500),
+	datum_stvoren TIMESTAMP NOT NULL,
+	datum_uredivan TIMESTAMP,
+	datum_rjesen TIMESTAMP,
+	datum_ocekivano TIMESTAMP,
+	stanje VARCHAR(50),
+	reporter_id int,
+	assigne_id int,
+	projekt_id int,
+	FOREIGN KEY (reporter_id) REFERENCES korisnik(id),
+	FOREIGN KEY (assigne_id) REFERENCES korisnik(id),
+	FOREIGN KEY (projekt_id) REFERENCES projekt(id)
+);
+
+CREATE TABLE komentar(
+	id int IDENTITY PRIMARY KEY,
+	tekst VARCHAR(500),
+	zadatak_id int NOT NULL,
+	korisnik_id int NOT NULL,
+	vrijeme TIMESTAMP NOT NULL,
+	FOREIGN KEY (korisnik_id) REFERENCES korisnik(id),
+	FOREIGN KEY (zadatak_id) REFERENCES zadatak(id),
+);
+
 --korisnici
 insert into korisnik(ime, prezime, korisnicko_ime, lozinka, aktivan) 
 	values('Ime1', 'Prezime1', 'korisnik1', '$2a$04$XLmCwvymbuo6A.C9PHWF8emU.1v6hS88S7ddY6g0F3i3.WiN.toFC', 1);
@@ -80,3 +107,143 @@ insert into korisnik_projekt(korisnik_id, projekt_id)
 	values(4, 3);
 insert into korisnik_projekt(korisnik_id, projekt_id)
 	values(5, 3);
+	
+--zadaci
+insert into zadatak(
+		ime,
+		opis,
+		datum_stvoren,
+		datum_uredivan,
+		datum_rjesen,
+		datum_ocekivano,
+		stanje,
+		reporter_id,
+		assigne_id,
+		projekt_id)
+	values(
+		'Zadatak1',
+		'Vestibulum ac orci vitae lacus posuere dictum.',
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
+		'TO DO',
+		2,
+		1,
+		2
+	);
+insert into zadatak(
+		ime,
+		opis,
+		datum_stvoren,
+		datum_uredivan,
+		datum_rjesen,
+		datum_ocekivano,
+		stanje,
+		reporter_id,
+		assigne_id,
+		projekt_id)
+	values(
+		'Zadatak2',
+		'Vestibulum ac orci vitae lacus posuere dictum.',
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
+		'TO DO',
+		1,
+		2,
+		1
+	);
+insert into zadatak(
+		ime,
+		opis,
+		datum_stvoren,
+		datum_uredivan,
+		datum_rjesen,
+		datum_ocekivano,
+		stanje,
+		reporter_id,
+		assigne_id,
+		projekt_id)
+	values(
+		'Zadatak3',
+		'Vestibulum ac orci vitae lacus posuere dictum.',
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
+		'TO DO',
+		4,
+		1,
+		3
+	);
+insert into zadatak(
+		ime,
+		opis,
+		datum_stvoren,
+		datum_uredivan,
+		datum_rjesen,
+		datum_ocekivano,
+		stanje,
+		reporter_id,
+		assigne_id,
+		projekt_id)
+	values(
+		'Zadatak4',
+		'Vestibulum ac orci vitae lacus posuere dictum.',
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
+		'TO DO',
+		4,
+		3,
+		3
+	);
+
+--komentari
+insert into komentar(
+		tekst,
+		zadatak_id,
+		korisnik_id,
+		vrijeme)
+	values(
+		'Vestibulum ac orci vitae lacus posuere dictum.',
+		1,
+		2,
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss')
+	);
+insert into komentar(
+		tekst,
+		zadatak_id,
+		korisnik_id,
+		vrijeme)
+	values(
+		'Vestibulum ac orci vitae lacus posuere dictum.',
+		2,
+		2,
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss')
+	);
+insert into komentar(
+		tekst,
+		zadatak_id,
+		korisnik_id,
+		vrijeme)
+	values(
+		'Vestibulum ac orci vitae lacus posuere dictum.',
+		3,
+		2,
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss')
+	);
+insert into komentar(
+		tekst,
+		zadatak_id,
+		korisnik_id,
+		vrijeme)
+	values(
+		'Vestibulum ac orci vitae lacus posuere dictum.',
+		3,
+		1,
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss')
+	);
