@@ -4,6 +4,8 @@ import lombok.Data;
 
 import javax.persistence.*;
 
+//TODO mapiranje korisnika na projekt
+
 @Data
 @Entity
 public class Projekt {

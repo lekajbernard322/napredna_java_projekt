@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.ArrayList;
 import java.util.List;
 
+//TODO kada promjenis CrudRepository u JpaRepository findAll() ce ti vracati direktno ArrayList, pa tu listu onda mozes odmah staviti u model
+//TODO staviti naslov na projekt/lista.html
+//TODO unutar <tr> elementa su dozvoljeni samo <td> i <th> elementi, tako da makni ovaj <a> element
+
 @Controller
 @RequestMapping("/projekt")
 public class ProjektController {
