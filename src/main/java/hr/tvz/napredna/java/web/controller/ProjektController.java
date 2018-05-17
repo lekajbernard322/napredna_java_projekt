@@ -24,11 +24,8 @@ public class ProjektController {
 	
 	@GetMapping("/lista")
 	public String lista(Model model) {
-		List<Projekt> pro = new ArrayList<>();
-		for(Projekt p : projekti.findAll())
-			pro.add(p);
 
-		model.addAttribute("projekti", pro);
+		model.addAttribute("projekti", projekti.findAll());
 
 		return "projekt/lista";
 	}

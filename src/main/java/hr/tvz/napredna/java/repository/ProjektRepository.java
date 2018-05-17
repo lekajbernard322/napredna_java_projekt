@@ -1,11 +1,9 @@
 package hr.tvz.napredna.java.repository;
 
 import hr.tvz.napredna.java.model.Projekt;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-//TODO promjeniti CrudRepository u JpaRepository
-
-public interface ProjektRepository extends CrudRepository<Projekt, Integer> {
+public interface ProjektRepository extends JpaRepository<Projekt, Integer> {
 
 
 }
