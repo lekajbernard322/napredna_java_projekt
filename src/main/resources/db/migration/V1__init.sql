@@ -22,9 +22,9 @@ CREATE TABLE projekt (
 
 CREATE TABLE korisnik_projekt(
 	korisnik_id INT NOT NULL,
-	projekt_id INT NOT NULL,
+	projekt INT NOT NULL,
 	FOREIGN KEY (korisnik_id) REFERENCES korisnik(id),
-	FOREIGN KEY (projekt_id) REFERENCES projekt(id)
+	FOREIGN KEY (projekt) REFERENCES projekt(id)
 );
 
 CREATE TABLE zadatak(
@@ -69,15 +69,15 @@ CREATE TABLE filter(
 CREATE TABLE filter_korisnik(
 	filter_id int NOT NULL,
 	korisnik_id int NOT NULL,
-	FOREIGN KEY (filter_id) REFERENCES filter(id)
+	FOREIGN KEY (filter_id) REFERENCES filter(id),
 	FOREIGN KEY (korisnik_id) REFERENCES korisnik(id)
 );
 
 CREATE TABLE filter_projekt(
 	filter_id int NOT NULL,
-	projekt_id int NOT NULL,
-	FOREIGN KEY (filter_id) REFERENCES filter(id)
-	FOREIGN KEY (projekt_id) REFERENCES projekt(id)
+	projekt int NOT NULL,
+	FOREIGN KEY (filter_id) REFERENCES filter(id),
+	FOREIGN KEY (projekt) REFERENCES projekt(id)
 );
 
 CREATE TABLE filter_stanja(
@@ -129,15 +129,15 @@ insert into projekt(ime, opis)
 	values('Projekt5', 'Sed scelerisque justo eget elit laoreet congue.');
 	
 --korisnik projekt
-insert into korisnik_projekt(korisnik_id, projekt_id)
+insert into korisnik_projekt(korisnik_id, projekt)
 	values(1, 1);
-insert into korisnik_projekt(korisnik_id, projekt_id)
+insert into korisnik_projekt(korisnik_id, projekt)
 	values(2, 1);
-insert into korisnik_projekt(korisnik_id, projekt_id)
+insert into korisnik_projekt(korisnik_id, projekt)
 	values(3, 1);
-insert into korisnik_projekt(korisnik_id, projekt_id)
+insert into korisnik_projekt(korisnik_id, projekt)
 	values(4, 3);
-insert into korisnik_projekt(korisnik_id, projekt_id)
+insert into korisnik_projekt(korisnik_id, projekt)
 	values(5, 3);
 	
 --zadaci
@@ -151,9 +151,9 @@ insert into zadatak(
 		datum_rjesen,
 		datum_ocekivano,
 		stanje,
-		reporter_id,
-		assigne_id,
-		projekt_id)
+		reporter,
+		assigne,
+		projekt)
 	values(
 		'Zadatak1',
 		'Vestibulum ac orci vitae lacus posuere dictum.',
@@ -178,9 +178,9 @@ insert into zadatak(
 		datum_rjesen,
 		datum_ocekivano,
 		stanje,
-		reporter_id,
-		assigne_id,
-		projekt_id)
+		reporter,
+		assigne,
+		projekt)
 	values(
 		'Zadatak2',
 		'Vestibulum ac orci vitae lacus posuere dictum.',
@@ -205,9 +205,9 @@ insert into zadatak(
 		datum_rjesen,
 		datum_ocekivano,
 		stanje,
-		reporter_id,
-		assigne_id,
-		projekt_id)
+		reporter,
+		assigne,
+		projekt)
 	values(
 		'Zadatak3',
 		'Vestibulum ac orci vitae lacus posuere dictum.',
@@ -232,9 +232,9 @@ insert into zadatak(
 		datum_rjesen,
 		datum_ocekivano,
 		stanje,
-		reporter_id,
-		assigne_id,
-		projekt_id)
+		reporter,
+		assigne,
+		projekt)
 	values(
 		'Zadatak4',
 		'Vestibulum ac orci vitae lacus posuere dictum.',
@@ -253,8 +253,8 @@ insert into zadatak(
 --komentari
 insert into komentar(
 		tekst,
-		zadatak_id,
-		korisnik_id,
+		zadatak,
+		korisnik,
 		vrijeme)
 	values(
 		'Vestibulum ac orci vitae lacus posuere dictum.',
@@ -264,8 +264,8 @@ insert into komentar(
 	);
 insert into komentar(
 		tekst,
-		zadatak_id,
-		korisnik_id,
+		zadatak,
+		korisnik,
 		vrijeme)
 	values(
 		'Vestibulum ac orci vitae lacus posuere dictum.',
@@ -275,8 +275,8 @@ insert into komentar(
 	);
 insert into komentar(
 		tekst,
-		zadatak_id,
-		korisnik_id,
+		zadatak,
+		korisnik,
 		vrijeme)
 	values(
 		'Vestibulum ac orci vitae lacus posuere dictum.',
@@ -286,8 +286,8 @@ insert into komentar(
 	);
 insert into komentar(
 		tekst,
-		zadatak_id,
-		korisnik_id,
+		zadatak,
+		korisnik,
 		vrijeme)
 	values(
 		'Vestibulum ac orci vitae lacus posuere dictum.',
