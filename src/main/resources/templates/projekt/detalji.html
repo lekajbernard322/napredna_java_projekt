@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{decorators/layout.html}">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <br>
+    <div class="container">
+        <div>
+            <table class="table table-striped">
+                <tr>
+                    <th>Ime</th>
+                    <th>Opis</th>
+
+                </tr>
+                <tr>
+
+                        <td><p th:text="${projekt.ime}"></p></td>
+                        <td th:text="${projekt.opis}"></td>
+
+                </tr>
+                <tr><th>Korisnici</th>
+
+                    <td> <p th:each="korisnik : ${korisnici}"
+                     th:text="${korisnik.ime} + ' ' + ${korisnik.prezime}"> </p></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

@@ -21,10 +21,11 @@ CREATE TABLE projekt (
 );
 
 CREATE TABLE korisnik_projekt(
+  id int IDENTITY PRIMARY KEY,
 	korisnik_id INT NOT NULL,
-	projekt INT NOT NULL,
+	projekt_id INT NOT NULL,
 	FOREIGN KEY (korisnik_id) REFERENCES korisnik(id),
-	FOREIGN KEY (projekt) REFERENCES projekt(id)
+	FOREIGN KEY (projekt_id) REFERENCES projekt(id)
 );
 
 CREATE TABLE zadatak(

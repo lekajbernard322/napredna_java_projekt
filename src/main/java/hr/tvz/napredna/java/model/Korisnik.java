@@ -65,7 +65,7 @@ public class Korisnik implements Serializable{
 	
 	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE })
 	@JoinTable(
-			name = "korisnik_projekt",
+			name = "korisnikprojekt",
 			joinColumns = { @JoinColumn(name = "korisnik_id") },
 			inverseJoinColumns = { @JoinColumn(name = "projekt") })
 	private Set<Projekt> projekti = new HashSet<>();
