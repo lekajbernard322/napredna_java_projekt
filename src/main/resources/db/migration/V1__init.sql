@@ -22,9 +22,68 @@ CREATE TABLE projekt (
 
 CREATE TABLE korisnik_projekt(
 	korisnik_id INT NOT NULL,
-	projekt_id INT NOT NULL,
+	projekt INT NOT NULL,
 	FOREIGN KEY (korisnik_id) REFERENCES korisnik(id),
-	FOREIGN KEY (projekt_id) REFERENCES projekt(id)
+	FOREIGN KEY (projekt) REFERENCES projekt(id)
+);
+
+CREATE TABLE zadatak(
+	id int IDENTITY PRIMARY KEY,
+	ime VARCHAR(50) NOT NULL,
+	opis VARCHAR(500),
+	tip VARCHAR(50),
+	prioritet VARCHAR(50),
+	datum_stvoren TIMESTAMP NOT NULL,
+	datum_uredivan TIMESTAMP,
+	datum_rjesen TIMESTAMP,
+	datum_ocekivano TIMESTAMP,
+	stanje VARCHAR(50),
+	reporter int,
+	assigne int,
+	projekt int,
+	FOREIGN KEY (reporter) REFERENCES korisnik(id),
+	FOREIGN KEY (assigne) REFERENCES korisnik(id),
+	FOREIGN KEY (projekt) REFERENCES projekt(id)
+);
+
+CREATE TABLE komentar(
+	id int IDENTITY PRIMARY KEY,
+	tekst VARCHAR(500),
+	zadatak int NOT NULL,
+	korisnik int NOT NULL,
+	vrijeme TIMESTAMP NOT NULL,
+	FOREIGN KEY (korisnik) REFERENCES korisnik(id),
+	FOREIGN KEY (zadatak) REFERENCES zadatak(id),
+);
+
+CREATE TABLE filter(
+	id int IDENTITY PRIMARY KEY,
+	ime VARCHAR(50),
+	opis VARCHAR(500),
+	korisnik int,
+	datum_od TIMESTAMP,
+	datum_do TIMESTAMP,
+	FOREIGN KEY (korisnik) REFERENCES korisnik(id)
+);
+
+CREATE TABLE filter_korisnik(
+	filter_id int NOT NULL,
+	korisnik_id int NOT NULL,
+	FOREIGN KEY (filter_id) REFERENCES filter(id),
+	FOREIGN KEY (korisnik_id) REFERENCES korisnik(id)
+);
+
+CREATE TABLE filter_projekt(
+	filter_id int NOT NULL,
+	projekt int NOT NULL,
+	FOREIGN KEY (filter_id) REFERENCES filter(id),
+	FOREIGN KEY (projekt) REFERENCES projekt(id)
+);
+
+CREATE TABLE filter_stanja(
+	filter_id int NOT NULL,
+	stanje int NOT NULL,
+	FOREIGN KEY (filter_id) REFERENCES filter(id)
 );
 
 --korisnici
@@ -70,13 +129,169 @@ insert into projekt(ime, opis)
 	values('Projekt5', 'Sed scelerisque justo eget elit laoreet congue.');
 	
 --korisnik projekt
-insert into korisnik_projekt(korisnik_id, projekt_id)
+insert into korisnik_projekt(korisnik_id, projekt)
 	values(1, 1);
-insert into korisnik_projekt(korisnik_id, projekt_id)
+insert into korisnik_projekt(korisnik_id, projekt)
 	values(2, 1);
-insert into korisnik_projekt(korisnik_id, projekt_id)
+insert into korisnik_projekt(korisnik_id, projekt)
 	values(3, 1);
-insert into korisnik_projekt(korisnik_id, projekt_id)
+insert into korisnik_projekt(korisnik_id, projekt)
 	values(4, 3);
-insert into korisnik_projekt(korisnik_id, projekt_id)
+insert into korisnik_projekt(korisnik_id, projekt)
 	values(5, 3);
+	
+--zadaci
+insert into zadatak(
+		ime,
+		opis,
+		tip,
+		prioritet,
+		datum_stvoren,
+		datum_uredivan,
+		datum_rjesen,
+		datum_ocekivano,
+		stanje,
+		reporter,
+		assigne,
+		projekt)
+	values(
+		'Zadatak1',
+		'Vestibulum ac orci vitae lacus posuere dictum.',
+		'Feature',
+		'Medium',
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
+		'TO DO',
+		2,
+		1,
+		2
+	);
+insert into zadatak(
+		ime,
+		opis,
+		tip,
+		prioritet,
+		datum_stvoren,
+		datum_uredivan,
+		datum_rjesen,
+		datum_ocekivano,
+		stanje,
+		reporter,
+		assigne,
+		projekt)
+	values(
+		'Zadatak2',
+		'Vestibulum ac orci vitae lacus posuere dictum.',
+		'Feature',
+		'Medium',
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
+		'TO DO',
+		1,
+		2,
+		1
+	);
+insert into zadatak(
+		ime,
+		opis,
+		tip,
+		prioritet,
+		datum_stvoren,
+		datum_uredivan,
+		datum_rjesen,
+		datum_ocekivano,
+		stanje,
+		reporter,
+		assigne,
+		projekt)
+	values(
+		'Zadatak3',
+		'Vestibulum ac orci vitae lacus posuere dictum.',
+		'Feature',
+		'Medium',
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
+		'TO DO',
+		4,
+		1,
+		3
+	);
+insert into zadatak(
+		ime,
+		opis,
+		tip,
+		prioritet,
+		datum_stvoren,
+		datum_uredivan,
+		datum_rjesen,
+		datum_ocekivano,
+		stanje,
+		reporter,
+		assigne,
+		projekt)
+	values(
+		'Zadatak4',
+		'Vestibulum ac orci vitae lacus posuere dictum.',
+		'Feature',
+		'Medium',
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
+		'TO DO',
+		4,
+		3,
+		3
+	);
+
+--komentari
+insert into komentar(
+		tekst,
+		zadatak,
+		korisnik,
+		vrijeme)
+	values(
+		'Vestibulum ac orci vitae lacus posuere dictum.',
+		1,
+		2,
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss')
+	);
+insert into komentar(
+		tekst,
+		zadatak,
+		korisnik,
+		vrijeme)
+	values(
+		'Vestibulum ac orci vitae lacus posuere dictum.',
+		2,
+		2,
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss')
+	);
+insert into komentar(
+		tekst,
+		zadatak,
+		korisnik,
+		vrijeme)
+	values(
+		'Vestibulum ac orci vitae lacus posuere dictum.',
+		3,
+		2,
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss')
+	);
+insert into komentar(
+		tekst,
+		zadatak,
+		korisnik,
+		vrijeme)
+	values(
+		'Vestibulum ac orci vitae lacus posuere dictum.',
+		3,
+		1,
+		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss')
+	);
