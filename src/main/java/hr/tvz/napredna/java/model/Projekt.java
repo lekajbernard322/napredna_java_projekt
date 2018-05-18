@@ -6,7 +6,6 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-//TODO mapiranje korisnika na projekt
 
 @Data
 @Entity
@@ -19,7 +18,7 @@ public class Projekt {
     private String ime;
     private String opis;
 
-    @ManyToMany
-    private Set<Projekt> projekti = new HashSet<>();
+    @ManyToMany(mappedBy="projekti")
+    private Set<Korisnik> korisnici = new HashSet<>();
 
 }

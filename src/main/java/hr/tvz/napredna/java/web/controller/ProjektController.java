@@ -1,19 +1,23 @@
 package hr.tvz.napredna.java.web.controller;
 
+import hr.tvz.napredna.java.model.Korisnik;
 import hr.tvz.napredna.java.model.Projekt;
+import hr.tvz.napredna.java.repository.KorisnikRepository;
 import hr.tvz.napredna.java.repository.ProjektRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
-//TODO kada promjenis CrudRepository u JpaRepository findAll() ce ti vracati direktno ArrayList, pa tu listu onda mozes odmah staviti u model
-//TODO staviti naslov na projekt/lista.html
-//TODO unutar <tr> elementa su dozvoljeni samo <td> i <th> elementi, tako da makni ovaj <a> element
 
 @Controller
 @RequestMapping("/projekt")
@@ -21,11 +25,16 @@ public class ProjektController {
 
 	@Autowired
 	ProjektRepository projekti;
-	
-	@GetMapping("/lista")
-	public String lista(Model model) {
+	@Autowired
+	KorisnikRepository korisnici;
 
-		model.addAttribute("projekti", projekti.findAll());
+
+	@GetMapping("/lista")
+	public String lista(Principal principal, Model model) {
+		Korisnik korisnik = korisnici.findByKorisnickoIme(principal.getName());
+
+		model.addAttribute("projekti", projekti.findAllByKorisnici(korisnik));
+		model.addAttribute("korisnik", korisnik.getKorisnickoIme());
 
 		return "projekt/lista";
 	}
