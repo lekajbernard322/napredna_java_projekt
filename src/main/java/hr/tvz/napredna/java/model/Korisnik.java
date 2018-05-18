@@ -67,7 +67,7 @@ public class Korisnik implements Serializable{
 	@JoinTable(
 			name = "korisnik_projekt",
 			joinColumns = { @JoinColumn(name = "korisnik_id") },
-			inverseJoinColumns = { @JoinColumn(name = "projekt_id") })
+			inverseJoinColumns = { @JoinColumn(name = "projekt") })
 	private Set<Projekt> projekti = new HashSet<>();
 	
 	public Korisnik() {
