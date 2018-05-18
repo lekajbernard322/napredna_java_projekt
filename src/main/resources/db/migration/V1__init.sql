@@ -130,15 +130,15 @@ insert into projekt(ime, opis)
 	values('Projekt5', 'Sed scelerisque justo eget elit laoreet congue.');
 	
 --korisnik projekt
-insert into korisnik_projekt(korisnik_id, projekt)
+insert into korisnik_projekt(korisnik_id, projekt_id)
 	values(1, 1);
-insert into korisnik_projekt(korisnik_id, projekt)
+insert into korisnik_projekt(korisnik_id, projekt_id)
 	values(2, 1);
-insert into korisnik_projekt(korisnik_id, projekt)
+insert into korisnik_projekt(korisnik_id, projekt_id)
 	values(3, 1);
-insert into korisnik_projekt(korisnik_id, projekt)
+insert into korisnik_projekt(korisnik_id, projekt_id)
 	values(4, 3);
-insert into korisnik_projekt(korisnik_id, projekt)
+insert into korisnik_projekt(korisnik_id, projekt_id)
 	values(5, 3);
 	
 --zadaci
