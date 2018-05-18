@@ -1,6 +1,10 @@
 package hr.tvz.napredna.java.web.controller;
 
+import hr.tvz.napredna.java.model.Korisnik;
+import hr.tvz.napredna.java.model.KorisnikProjekt;
 import hr.tvz.napredna.java.model.Projekt;
+import hr.tvz.napredna.java.repository.KorisnikProjektRepository;
+import hr.tvz.napredna.java.repository.KorisnikRepository;
 import hr.tvz.napredna.java.repository.ProjektRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +25,11 @@ public class ProjektController {
 
 	@Autowired
 	ProjektRepository projekti;
-	
+    @Autowired
+	KorisnikRepository korisnici;
+    @Autowired
+	KorisnikProjektRepository korisniciProjekt;
+
 	@GetMapping("/lista")
 	public String lista(Model model) {
 		List<Projekt> pro = new ArrayList<>();
@@ -31,6 +39,25 @@ public class ProjektController {
 		model.addAttribute("projekti", pro);
 
 		return "projekt/lista";
+	}
+	@GetMapping("/detalji")
+	public String detail(Model model,Integer id) {
+		List<Projekt> pro = new ArrayList<>();
+		List<Korisnik> kor = new ArrayList<>();
+		Integer odabran = 0;
+		List<KorisnikProjekt> korpro = new ArrayList<>();
+		for(Projekt p : projekti.findAll())
+			pro.add(p);
+		for(KorisnikProjekt kp : korisniciProjekt.findAll())
+
+		    if ( kp.getProjekt_id().equals(id)) {
+                kor.add(korisnici.getOne(kp.getKorisnik_id()));
+            }
+        model.addAttribute("projekt",pro.get(id-1));
+        model.addAttribute("korisnici",kor);
+
+
+		return "projekt/detalji";
 	}
 
 }

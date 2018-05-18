@@ -21,6 +21,7 @@ CREATE TABLE projekt (
 );
 
 CREATE TABLE korisnik_projekt(
+  id int IDENTITY PRIMARY KEY,
 	korisnik_id INT NOT NULL,
 	projekt_id INT NOT NULL,
 	FOREIGN KEY (korisnik_id) REFERENCES korisnik(id),
@@ -86,7 +87,7 @@ insert into korisnik_uloga(korisnik, uloga)
 	
 --projekti
 insert into projekt(ime, opis)
-	values('Projekt1', 'Vestibulum ac orci vitae lacus posuere dictum.');
+	values('Projekta1', 'Vestibulum ac orci vitae lacus posuere dictum.');
 insert into projekt(ime, opis)
 	values('Projekt2', 'Nunc vel augue eget mi ullamcorper dictum in sed metus.');
 insert into projekt(ime, opis)
@@ -103,11 +104,19 @@ insert into korisnik_projekt(korisnik_id, projekt_id)
 	values(2, 1);
 insert into korisnik_projekt(korisnik_id, projekt_id)
 	values(3, 1);
+	insert into korisnik_projekt(korisnik_id, projekt_id)
+	values(3, 2);
 insert into korisnik_projekt(korisnik_id, projekt_id)
 	values(4, 3);
+	insert into korisnik_projekt(korisnik_id, projekt_id)
+	values(4, 4);
 insert into korisnik_projekt(korisnik_id, projekt_id)
 	values(5, 3);
-	
+insert into korisnik_projekt(korisnik_id, projekt_id)
+	values(1, 3);
+insert into korisnik_projekt(korisnik_id, projekt_id)
+	values(4, 5);
+
 --zadaci
 insert into zadatak(
 		ime,
