@@ -31,27 +31,59 @@ CREATE TABLE zadatak(
 	id int IDENTITY PRIMARY KEY,
 	ime VARCHAR(50) NOT NULL,
 	opis VARCHAR(500),
+	tip VARCHAR(50),
+	prioritet VARCHAR(50),
 	datum_stvoren TIMESTAMP NOT NULL,
 	datum_uredivan TIMESTAMP,
 	datum_rjesen TIMESTAMP,
 	datum_ocekivano TIMESTAMP,
 	stanje VARCHAR(50),
-	reporter_id int,
-	assigne_id int,
-	projekt_id int,
-	FOREIGN KEY (reporter_id) REFERENCES korisnik(id),
-	FOREIGN KEY (assigne_id) REFERENCES korisnik(id),
-	FOREIGN KEY (projekt_id) REFERENCES projekt(id)
+	reporter int,
+	assigne int,
+	projekt int,
+	FOREIGN KEY (reporter) REFERENCES korisnik(id),
+	FOREIGN KEY (assigne) REFERENCES korisnik(id),
+	FOREIGN KEY (projekt) REFERENCES projekt(id)
 );
 
 CREATE TABLE komentar(
 	id int IDENTITY PRIMARY KEY,
 	tekst VARCHAR(500),
-	zadatak_id int NOT NULL,
-	korisnik_id int NOT NULL,
+	zadatak int NOT NULL,
+	korisnik int NOT NULL,
 	vrijeme TIMESTAMP NOT NULL,
-	FOREIGN KEY (korisnik_id) REFERENCES korisnik(id),
-	FOREIGN KEY (zadatak_id) REFERENCES zadatak(id),
+	FOREIGN KEY (korisnik) REFERENCES korisnik(id),
+	FOREIGN KEY (zadatak) REFERENCES zadatak(id),
+);
+
+CREATE TABLE filter(
+	id int IDENTITY PRIMARY KEY,
+	ime VARCHAR(50),
+	opis VARCHAR(500),
+	korisnik int,
+	datum_od TIMESTAMP,
+	datum_do TIMESTAMP,
+	FOREIGN KEY (korisnik) REFERENCES korisnik(id)
+);
+
+CREATE TABLE filter_korisnik(
+	filter_id int NOT NULL,
+	korisnik_id int NOT NULL,
+	FOREIGN KEY (filter_id) REFERENCES filter(id)
+	FOREIGN KEY (korisnik_id) REFERENCES korisnik(id)
+);
+
+CREATE TABLE filter_projekt(
+	filter_id int NOT NULL,
+	projekt_id int NOT NULL,
+	FOREIGN KEY (filter_id) REFERENCES filter(id)
+	FOREIGN KEY (projekt_id) REFERENCES projekt(id)
+);
+
+CREATE TABLE filter_stanja(
+	filter_id int NOT NULL,
+	stanje int NOT NULL,
+	FOREIGN KEY (filter_id) REFERENCES filter(id)
 );
 
 --korisnici
@@ -112,6 +144,8 @@ insert into korisnik_projekt(korisnik_id, projekt_id)
 insert into zadatak(
 		ime,
 		opis,
+		tip,
+		prioritet,
 		datum_stvoren,
 		datum_uredivan,
 		datum_rjesen,
@@ -123,6 +157,8 @@ insert into zadatak(
 	values(
 		'Zadatak1',
 		'Vestibulum ac orci vitae lacus posuere dictum.',
+		'Feature',
+		'Medium',
 		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
 		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
 		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
@@ -135,6 +171,8 @@ insert into zadatak(
 insert into zadatak(
 		ime,
 		opis,
+		tip,
+		prioritet,
 		datum_stvoren,
 		datum_uredivan,
 		datum_rjesen,
@@ -146,6 +184,8 @@ insert into zadatak(
 	values(
 		'Zadatak2',
 		'Vestibulum ac orci vitae lacus posuere dictum.',
+		'Feature',
+		'Medium',
 		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
 		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
 		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
@@ -158,6 +198,8 @@ insert into zadatak(
 insert into zadatak(
 		ime,
 		opis,
+		tip,
+		prioritet,
 		datum_stvoren,
 		datum_uredivan,
 		datum_rjesen,
@@ -169,6 +211,8 @@ insert into zadatak(
 	values(
 		'Zadatak3',
 		'Vestibulum ac orci vitae lacus posuere dictum.',
+		'Feature',
+		'Medium',
 		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
 		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
 		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
@@ -181,6 +225,8 @@ insert into zadatak(
 insert into zadatak(
 		ime,
 		opis,
+		tip,
+		prioritet,
 		datum_stvoren,
 		datum_uredivan,
 		datum_rjesen,
@@ -192,6 +238,8 @@ insert into zadatak(
 	values(
 		'Zadatak4',
 		'Vestibulum ac orci vitae lacus posuere dictum.',
+		'Feature',
+		'Medium',
 		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
 		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
 		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
