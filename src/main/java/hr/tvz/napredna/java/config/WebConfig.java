@@ -22,7 +22,6 @@ public class WebConfig {
 		ConversionServiceFactoryBean factory = new ConversionServiceFactoryBean();
 		Set<Converter> converters = new HashSet<>();
 		
-		// tu se dodaju konverteri
 		converters.add(new ModelToKorisnikConverter());
 		
 		factory.setConverters(converters);
