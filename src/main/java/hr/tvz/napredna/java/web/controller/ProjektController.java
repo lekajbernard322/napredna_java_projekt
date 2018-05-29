@@ -15,10 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import hr.tvz.napredna.java.model.Korisnik;
-import hr.tvz.napredna.java.model.KorisnikProjekt;
 import hr.tvz.napredna.java.model.Projekt;
 import hr.tvz.napredna.java.model.ProjektFormModel;
-import hr.tvz.napredna.java.repository.KorisnikProjektRepository;
 import hr.tvz.napredna.java.repository.KorisnikRepository;
 import hr.tvz.napredna.java.repository.ProjektRepository;
 
@@ -35,15 +33,14 @@ public class ProjektController {
 	
     @Autowired
 	KorisnikRepository korisnikRepository;
-    
-    @Autowired
-	KorisnikProjektRepository korisniciProjekt;
+
 
 	@GetMapping("/lista")
 	public String lista(Principal principal, Model model) {
 		Korisnik korisnik = korisnikRepository.findByKorisnickoIme(principal.getName());
-
-		model.addAttribute("projekti", projektRepository.findAllByKorisnici(korisnik));
+        if (korisnik.getKorisnickoIme().equalsIgnoreCase("admin")){
+		model.addAttribute("projekti", projektRepository.findAll());}else{
+		    model.addAttribute("projekti", projektRepository.findAllByKorisnici(korisnik));}
 		model.addAttribute("korisnik", korisnik.getKorisnickoIme());
 
 		return "projekt/lista";
@@ -51,19 +48,11 @@ public class ProjektController {
 	
 	@GetMapping("/detalji")
 	public String detail(Model model,Integer id) {
-		List<Projekt> pro = new ArrayList<>();
-		List<Korisnik> kor = new ArrayList<>();
-		Integer odabran = 0;
-		List<KorisnikProjekt> korpro = new ArrayList<>();
-		for(Projekt p : projektRepository.findAll())
-			pro.add(p);
-		for(KorisnikProjekt kp : korisniciProjekt.findAll())
+		List<Projekt> pro = projektRepository.findAll();
 
-		    if ( kp.getProjekt_id().equals(id)) {
-                kor.add(korisnikRepository.getOne(kp.getKorisnik_id()));
-            }
+
         model.addAttribute("projekt",pro.get(id-1));
-        model.addAttribute("korisnici",kor);
+        model.addAttribute("korisnici",pro.get(id-1).getKorisnici());
 
 
 		return "projekt/detalji";
