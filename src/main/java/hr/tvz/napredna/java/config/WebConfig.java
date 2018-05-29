@@ -11,6 +11,8 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 
 import hr.tvz.napredna.java.model.converters.ModelToKorisnikConverter;
+import hr.tvz.napredna.java.model.converters.ModelToProjektConverter;
+import hr.tvz.napredna.java.model.converters.ProjektToModelConverter;
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 
 @Configuration
@@ -23,6 +25,8 @@ public class WebConfig {
 		Set<Converter> converters = new HashSet<>();
 		
 		converters.add(new ModelToKorisnikConverter());
+		converters.add(new ProjektToModelConverter());
+		converters.add(new ModelToProjektConverter());
 		
 		factory.setConverters(converters);
 		return factory;

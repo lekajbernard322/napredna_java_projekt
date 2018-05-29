@@ -154,4 +154,9 @@ public class Korisnik implements Serializable{
 		return Objects.hash(id, korisnickoIme);
 	}
 	
+	@Override
+	public String toString() {
+		return "Korisnik[id=" + id + ", korisnickoIme=" + korisnickoIme + "]";
+	}
+	
 }
