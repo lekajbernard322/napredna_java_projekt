@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<th:block th:fragment="ploca">
+	<div class="card">
+		<div class="card-body">
+			
+			<div class="card-deck">
+				<div th:each="s : ${stanja}" class="card">
+					<h5 class="card-header text-center" th:text="${s}"></h5>
+					<div>		
+						<div th:each="zadatak : ${zadaci.?[stanje.equals('__${s}__')]}" 
+							 class="card"
+							 style="margin-top: 5px">
+							<div class="card-body">
+								<h6 class="card-title" th:text="${zadatak.naslov}"></h6>
+								<div>
+									<div th:text="${zadatak.opis}"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</th:block>
+
+</body>
+</html>
