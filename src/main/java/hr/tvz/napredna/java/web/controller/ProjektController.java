@@ -73,7 +73,7 @@ public class ProjektController {
 		
 		Projekt projekt = conversionService.convert(projektFormModel, Projekt.class);
 		
-		projekt = projektRepository.save(projekt);
+		projekt = projektRepository.saveAndFlush(projekt);
 		
 		return "redirect:/projekt/detalji?id=" + projekt.getId();
 	}
