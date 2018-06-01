@@ -83,9 +83,9 @@ public class ProjektController {
 		
 		Optional<Projekt> projekt = projektRepository.findById(id);
 		
-		projekt.orElseThrow(() -> new Exception("Projekt sa id " + id + " ne postoji!"));
+		Projekt p = projekt.orElseThrow(() -> new Exception("Projekt sa id " + id + " ne postoji!"));
 		
-		ProjektFormModel projektFormModel = conversionService.convert(projekt, ProjektFormModel.class);
+		ProjektFormModel projektFormModel = conversionService.convert(p, ProjektFormModel.class);
 		
 		model.addAttribute("projektFormModel", projektFormModel);
 		
