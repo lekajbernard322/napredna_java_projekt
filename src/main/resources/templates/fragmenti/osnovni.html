@@ -57,9 +57,9 @@
 			<a th:href="@{/filter/lista}" th:classappend="${nav} == 'filter' ? activeItem">Filtri</a>
 			<a th:href="@{/zadatak/novi}" th:classappend="${nav} == 'zadatak' ? activeItem">Novi Zadatak</a>
 			<a th:href="@{/kanban}" th:classappend="${nav} == 'kanban' ? activeItem">Kanban</a>
-			<a href="#">Timesheet</a>
-			<a href="/error/test">Statistika</a>
-			<a th:href="@{/korisnik/postavke}">Postavke</a>
+			<a th:href="@{/timesheet}">Timesheet</a>
+			<a th:href="@{/statistika}">Statistika</a>
+			<a th:href="@{/korisnik/postavke}" th:classappend="${nav} == 'postavke' ? activeItem">Postavke</a>
 		</div>
 	</th:block>
 	

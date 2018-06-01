@@ -47,7 +47,7 @@ public class ZadatakController {
         new PropertyEditorSupport() {
             public void setAsText(String value) {
                 try {
-                    Date parsedDate = new SimpleDateFormat("dd.MM.yyyy HH:mm").parse(value);
+                    Date parsedDate = new SimpleDateFormat("yyyy-MM-dd").parse(value);
                     setValue(new Timestamp(parsedDate.getTime()));
                 } catch (ParseException e) {
                     setValue(null);
@@ -67,7 +67,7 @@ public class ZadatakController {
 	}
 	
 	@PostMapping("/novi")
-	public String spremiNoviZadatak(@Valid ZadatakFormModel zadatakFormModel, Principal principal, BindingResult result) {
+	public String spremiNoviZadatak(@Valid ZadatakFormModel zadatakFormModel, BindingResult result, Principal principal) {
 		
 		if (result.hasErrors()) {
 			return "zadatak/novi";
