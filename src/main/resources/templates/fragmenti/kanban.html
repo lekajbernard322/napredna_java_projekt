@@ -16,15 +16,20 @@
 				<div th:each="s : ${stanja}" class="card">
 					<h5 class="card-header text-center" th:text="${s}"></h5>
 					<div>		
-						<div th:each="zadatak : ${zadaci.?[stanje.equals('__${s}__')]}" 
+						<div th:each="zadatak : ${zadaci.?[stanje.equalsIgnoreCase('__${s}__')]}" 
 							 class="card"
 							 style="margin-top: 5px">
 							<div class="card-body">
-								<h6 class="card-title" th:text="${zadatak.naslov}"></h6>
+								<h6 class="card-title" th:text="${zadatak.ime}"></h6>
 								<div>
 									<div th:text="${zadatak.opis}"></div>
 								</div>
 							</div>
+							<div class="card-footer text-muted">
+						    	<small th:text="${'Tip: ' + zadatak.tip}"></small>
+						    	<br>
+						    	<small th:text="${'Prioritet: ' + zadatak.prioritet}"></small>
+						  	</div>
 						</div>
 					</div>
 				</div>
