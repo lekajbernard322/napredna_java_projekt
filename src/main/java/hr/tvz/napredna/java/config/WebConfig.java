@@ -30,6 +30,7 @@ public class WebConfig {
 		converters.add(new ModelToKorisnikConverter());
 		converters.add(new ProjektToModelConverter());
 		converters.add(new ModelToProjektConverter());
+		converters.add(new ModelToZadatakConverter());
 		converters.add(new ModelToFilterConverter());
 		converters.add(new FilterToModelConverter());
 		factory.setConverters(converters);
