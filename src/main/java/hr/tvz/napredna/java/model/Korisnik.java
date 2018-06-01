@@ -19,7 +19,7 @@ package hr.tvz.napredna.java.model;
 		import javax.persistence.ManyToMany;
 		import javax.persistence.Table;
 		import javax.validation.constraints.NotNull;
-		import javax.validation.constraints.Size;
+		import javax.validation.constraints.Size; 
 
 @Entity
 @Table(name = "korisnik")
