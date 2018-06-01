@@ -3,6 +3,7 @@ package hr.tvz.napredna.java.config;
 import java.util.HashSet;
 import java.util.Set;
 
+import hr.tvz.napredna.java.model.converters.FilterToModelConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ConversionServiceFactoryBean;
@@ -13,6 +14,8 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import hr.tvz.napredna.java.model.converters.ModelToKorisnikConverter;
 import hr.tvz.napredna.java.model.converters.ModelToProjektConverter;
 import hr.tvz.napredna.java.model.converters.ProjektToModelConverter;
+import hr.tvz.napredna.java.model.converters.ModelToFilterConverter;
+import hr.tvz.napredna.java.model.converters.FilterToModelConverter;
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 
 @Configuration
@@ -27,7 +30,8 @@ public class WebConfig {
 		converters.add(new ModelToKorisnikConverter());
 		converters.add(new ProjektToModelConverter());
 		converters.add(new ModelToProjektConverter());
-		
+		converters.add(new ModelToFilterConverter());
+		converters.add(new FilterToModelConverter());
 		factory.setConverters(converters);
 		return factory;
 	}

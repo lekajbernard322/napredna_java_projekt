@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{decorators/layout.html}" th:with="nav='filter'">
+<head>
+<meta charset="UTF-8">
+<title>Forma za projekt</title>
+</head>
+<body>
+	<section layout:fragment="content">
+		<div class="container">
+		<div class="row">
+			<div class="card col-md-6 offset-md-3"
+			 	 style="margin-top: 50px">
+				<div class="card-body">
+					<h2 class="card-title text-center">Forma za filter v0.5</h2>
+					<div class="card-text">
+						<div>
+							<form name='f' 
+								  th:action="@{/filter/novi}"
+								  th:object="${filterFormModel}"
+								  method="POST">
+								<div class="form-group">
+									<label for="ime">Ime:</label>
+									<input type="text"
+										   th:field="*{ime}"
+										   th:errorclass="border-danger"
+										   name="ime"
+										   id="ime"
+										   autofocus
+										   class="form-control border" />
+								   <small th:if="${#fields.hasErrors('ime')}" 
+								   		  th:errors="*{ime}" 
+								   		  class="form-text text-danger">
+								   		  Greška.
+						   		  </small>
+								</div>
+								<div class="form-group">
+									<label for="opis">Opis:</label>
+									<textarea name="opis"
+											  th:field="*{opis}" 
+										   	  id="opis"
+										   	  class="form-control">
+								   </textarea>
+								</div>
+								<div class="text-right"
+									 style="margin-top: 20px">
+									<input name="submit" 
+										   type="submit"
+										   class="btn btn-primary" 
+										   value="Spremi" />
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</section>
+	
+
+	
+	
+</body>
+</html>

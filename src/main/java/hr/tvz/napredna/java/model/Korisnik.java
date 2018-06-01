@@ -5,19 +5,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.CollectionTable;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -69,7 +57,18 @@ public class Korisnik implements Serializable{
 			joinColumns = { @JoinColumn(name = "korisnik_id") },
 			inverseJoinColumns = { @JoinColumn(name = "projekt_id") })
 	private Set<Projekt> projekti = new HashSet<>();
-	
+
+	public Set<Filter> getFiltri() {
+		return filtri;
+	}
+
+	public void setFiltri(Set<Filter> filtri) {
+		this.filtri = filtri;
+	}
+
+	@OneToMany(mappedBy = "korisnik")
+	private Set<Filter> filtri = new HashSet<>();
+
 	public Korisnik() {
 		super();
 	}
