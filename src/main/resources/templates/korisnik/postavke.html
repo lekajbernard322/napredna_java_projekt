@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{decorators/layout.html}" th:with="nav='projekt'">
+<head>
+    <meta charset="UTF-8">
+    <title>Postavke</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <br />
+    <h2 class="card-title">Promjena lozinke</h2>
+    <br />
+    <div class="card-text col-md-4">
+        <div>
+            <form th:action="@{/korisnik/postavke}"
+                  th:object="${korisnikFormModel}"
+                  method="POST">
+                <div class="form-group">
+                    <label for="lozinka">Lozinka:</label>
+                    <input type="password"
+                           th:field="*{lozinka}"
+                           th:errorclass="border-danger"
+                           name="lozinka"
+                           id="lozinka"
+                           class="form-control border" />
+                    <small th:if="${#fields.hasErrors('lozinka')}"
+                           th:errors="*{lozinka}"
+                           class="form-text text-danger">
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="lozinkaPotvrda">Potvrdi lozinku:</label>
+                    <input type="password"
+                           th:field="*{lozinkaPotvrda}"
+                           th:errorclass="border-danger"
+                           name="lozinkaPotvrda"
+                           id="lozinkaPotvrda"
+                           class="form-control border" />
+                    <small th:if="${#fields.hasErrors('lozinkaPotvrda')}"
+                           th:errors="*{lozinkaPotvrda}"
+                           class="form-text text-danger">
+                    </small>
+                </div>
+                <div class="text-right"
+                     style="margin-top: 20px">
+                    <input name="submit"
+                           type="submit"
+                           class="btn btn-primary"
+                           value="Pošalji" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <br />
+    <hr />
+
+</section>
+</body>
+</html>

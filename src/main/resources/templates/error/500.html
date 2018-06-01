@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{decorators/layout.html}" th:with="nav='projekt'">
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Error 500!</title>
+</head>
+<body>
+<section layout:fragment="content">
+
+    <br />
+    <div class="alert alert-danger">
+        <h2>Interna greška na serveru!</h2>
+        <hr />
+        (<span th:text="${status}"></span>)
+    </div>
+
+</section>
+</body>
+</html>

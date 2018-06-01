@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import lombok.Data;
 
@@ -20,29 +22,31 @@ public class Zadatak {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
-	@Column(nullable = false)
+	@NotNull
+	@Size(min = 5, max = 50)
+	@Column(length = 50, nullable = false)
     private String ime;
     
+	@Size(max = 500)
+	@Column(length = 500)
     private String opis;
     
-    @Column(nullable = false)
     private String tip;
     
-    @Column(nullable = false)
     private String prioritet;
     
-    @Column(nullable = false)
     private String stanje;
     
     private int procjenaVremena;
     
+    @NotNull
+	@Column(nullable = false)
     private Timestamp datumStvoren;
     
     private Timestamp datumUredivan;
     
     private Timestamp datumRjesen;
     
-    @Column(nullable = false)
     private Timestamp datumOcekivano;
         
     @ManyToOne

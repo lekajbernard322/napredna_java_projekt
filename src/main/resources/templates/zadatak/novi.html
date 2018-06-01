@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.w3.org/1999/xhtml"
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.w3.org/1999/xhtml" 
       layout:decorate="~{decorators/layout.html}" th:with="nav='zadatak'">
 <head>
 <meta charset="UTF-8">
@@ -34,7 +34,6 @@
 										   th:errorclass="border-danger"
 										   name="ime"
 										   id="ime"
-										   autofocus
 										   class="form-control border" />
 								   <small th:if="${#fields.hasErrors('ime')}" 
 								   		  th:errors="*{ime}" 
@@ -48,7 +47,6 @@
 										   th:errorclass="border-danger"
 										   name="opis"
 										   id="opis"
-										   autofocus
 										   class="form-control border" />
 								   <small th:if="${#fields.hasErrors('opis')}" 
 								   		  th:errors="*{opis}" 
@@ -73,16 +71,10 @@
 								<div class="form-group">
 									<label for="procjenaVremena">Procjena vremena u satima:</label>
 									<input type="number"
-										   th:field="*{procjenaVremena}"
-										   th:errorclass="border-danger"
+										   th:field="*{procjenaVremena}"										   
 										   name="procjenaVremena"
 										   id="procjenaVremena"
-										   autofocus
-										   class="form-control border" />
-								   <small th:if="${#fields.hasErrors('procjenaVremena')}" 
-								   		  th:errors="*{procjenaVremena}" 
-								   		  class="form-text text-danger">
-						   		  </small>
+										   class="form-control border" />								   
 								</div>
 								<div class="form-group">
 									<label for="datumOcekivano">Očekivani datum:</label>
@@ -90,14 +82,11 @@
 										   th:field="*{datumOcekivano}"
 										   name="datumOcekivano" 
 										   id="datumOcekivano"
-										   class="form-control" />
+										   class="form-control" 
+										   required />
 									<span class="input-group-addon">
 										<span class="glyphicon glyphicon-calendar"></span>
-									</span>
-								   	<small th:if="${#fields.hasErrors('datumOcekivano')}" 
-								   		   th:errors="*{datumOcekivano}" 
-								   		   class="form-text text-danger">
-						   		  	</small>
+									</span>								   
 								</div>								
 								<div class="form-group">
 									<label for="assignee">Assignee:</label>

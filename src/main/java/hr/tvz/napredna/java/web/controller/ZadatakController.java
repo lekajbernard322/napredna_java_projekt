@@ -7,10 +7,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -64,15 +67,19 @@ public class ZadatakController {
 	}
 	
 	@PostMapping("/novi")
-	public String spremiNoviZadatak(ZadatakFormModel zadatakFormModel, Principal principal) {
-				
+	public String spremiNoviZadatak(@Valid ZadatakFormModel zadatakFormModel, Principal principal, BindingResult result) {
+		
+		if (result.hasErrors()) {
+			return "zadatak/novi";
+		}
+		
 		Zadatak zadatak = conversionService.convert(zadatakFormModel, Zadatak.class);
 		zadatak.setReporter(korisnikRepository.findByKorisnickoIme(principal.getName()));
 		zadatak.setStanje("TO DO");
 		zadatak.setDatumStvoren(new Timestamp(System.currentTimeMillis()));
 		zadatak.setDatumUredivan(new Timestamp(System.currentTimeMillis()));
 		
-		zadatak = zadatakRepository.save(zadatak);
+		zadatakRepository.save(zadatak);
 		
 		return "redirect:/kanban";
 	}	

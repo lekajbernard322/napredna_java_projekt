@@ -10,5 +10,6 @@ import hr.tvz.napredna.java.model.Projekt;
 public interface ProjektRepository extends JpaRepository<Projekt, Integer> {
 
     List<Projekt> findAllByKorisnici(Korisnik korisnik);
+    List<Projekt> findAllByKorisnici_KorisnickoIme(String korisnickoIme);
     
 }

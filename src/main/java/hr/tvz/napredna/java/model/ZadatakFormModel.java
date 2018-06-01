@@ -3,25 +3,25 @@ package hr.tvz.napredna.java.model;
 import java.sql.Timestamp;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class ZadatakFormModel {
 	
 	private Integer id;
 	
 	@NotNull(message = "Ne smije biti prazno.")
+	@Size(min = 5, max = 50, message = "Ime projekta mora imati od 5 do 50 znakova.")
 	private String ime;
 	
-	@NotNull(message = "Ne smije biti prazno.")
+	@Size(max = 500, message = "Opis smije imati maksimalno 500 znakova.")
 	private String opis;
 	
 	private String tip;
 	
 	private String prioritet;
 	
-	@NotNull(message = "Odaberite procijenjeno vrijeme u satima.")
 	private int procjenaVremena;
 	
-	@NotNull(message = "Odaberite očekivani datum.")
 	private Timestamp datumOcekivano;
 	
 	private Korisnik assignee;

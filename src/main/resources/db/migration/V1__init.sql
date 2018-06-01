@@ -167,7 +167,7 @@ insert into zadatak(
 		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
 		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
 		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
-		'TO DO',
+		'To do',
 		2,
 		1,
 		2
@@ -196,7 +196,7 @@ insert into zadatak(
 		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
 		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
 		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
-		'TO DO',
+		'Implementation',
 		1,
 		2,
 		1
@@ -225,7 +225,7 @@ insert into zadatak(
 		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
 		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
 		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
-		'TO DO',
+		'Testing',
 		4,
 		1,
 		3
@@ -254,7 +254,7 @@ insert into zadatak(
 		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
 		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
 		parsedatetime('2018-06-17 18:47:22', 'yyyy-MM-dd hh:mm:ss'),
-		'TO DO',
+		'Done',
 		4,
 		3,
 		3
