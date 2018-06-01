@@ -13,6 +13,7 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 
 import hr.tvz.napredna.java.model.converters.ModelToKorisnikConverter;
 import hr.tvz.napredna.java.model.converters.ModelToProjektConverter;
+import hr.tvz.napredna.java.model.converters.ModelToZadatakConverter;
 import hr.tvz.napredna.java.model.converters.ProjektToModelConverter;
 import hr.tvz.napredna.java.model.converters.ModelToFilterConverter;
 import hr.tvz.napredna.java.model.converters.FilterToModelConverter;
@@ -33,6 +34,7 @@ public class WebConfig {
 		converters.add(new ModelToZadatakConverter());
 		converters.add(new ModelToFilterConverter());
 		converters.add(new FilterToModelConverter());
+
 		factory.setConverters(converters);
 		return factory;
 	}

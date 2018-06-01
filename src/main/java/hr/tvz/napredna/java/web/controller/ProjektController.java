@@ -1,7 +1,6 @@
 package hr.tvz.napredna.java.web.controller;
 
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,11 +36,14 @@ public class ProjektController {
 
 	@GetMapping("/lista")
 	public String lista(Principal principal, Model model) {
-		Korisnik korisnik = korisnikRepository.findByKorisnickoIme(principal.getName());
-        if (korisnik.getKorisnickoIme().equalsIgnoreCase("admin")){
-		model.addAttribute("projekti", projektRepository.findAll());}else{
-		    model.addAttribute("projekti", projektRepository.findAllByKorisnici(korisnik));}
-		model.addAttribute("korisnik", korisnik.getKorisnickoIme());
+		String korisnickoIme = principal.getName();
+
+        if (korisnickoIme.equalsIgnoreCase("admin")){
+			model.addAttribute("projekti", projektRepository.findAll());}
+		else{
+		    model.addAttribute("projekti", projektRepository.findAllByKorisnici_KorisnickoIme(korisnickoIme));}
+
+		model.addAttribute("korisnik", korisnickoIme);
 
 		return "projekt/lista";
 	}
@@ -74,7 +76,7 @@ public class ProjektController {
 		
 		Projekt projekt = conversionService.convert(projektFormModel, Projekt.class);
 		
-		projekt = projektRepository.save(projekt);
+		projekt = projektRepository.saveAndFlush(projekt);
 		
 		return "redirect:/projekt/detalji?id=" + projekt.getId();
 	}

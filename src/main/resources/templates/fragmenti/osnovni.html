@@ -54,11 +54,12 @@
 	<th:block th:fragment="sidenav">
 		<div id="sidenav" class="sidenav col-md-2">
 			<a th:href="@{/projekt/lista}" th:classappend="${nav} == 'projekt' ? activeItem">Projekti</a>
-			<a href="#">Kanban</a>
 			<a th:href="@{/filter/lista}" th:classappend="${nav} == 'filter' ? activeItem">Filtri</a>
+			<a th:href="@{/zadatak/novi}" th:classappend="${nav} == 'zadatak' ? activeItem">Novi Zadatak</a>
+			<a th:href="@{/kanban}" th:classappend="${nav} == 'kanban' ? activeItem">Kanban</a>
 			<a href="#">Timesheet</a>
-			<a href="#">Statistika</a>
-			<a href="#">Postavke</a>
+			<a href="/error/test">Statistika</a>
+			<a th:href="@{/korisnik/postavke}">Postavke</a>
 		</div>
 	</th:block>
 	
