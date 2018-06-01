@@ -63,7 +63,7 @@ CREATE TABLE filter(
 	ime VARCHAR(50),
 	opis VARCHAR(500),
 	korisnik int,
-	datum_od TIMESTAMP,
+  datum_od TIMESTAMP,
 	datum_do TIMESTAMP,
 	FOREIGN KEY (korisnik) REFERENCES korisnik(id)
 );
@@ -141,7 +141,14 @@ insert into korisnik_projekt(korisnik_id, projekt_id)
 	values(4, 3);
 insert into korisnik_projekt(korisnik_id, projekt_id)
 	values(5, 3);
-	
+
+--filtri
+insert into filter(ime, opis,korisnik)
+	values('ime1', 'opis1', 1);
+insert into filter(ime, opis,korisnik)
+	values('ime2', 'opis2', 3);
+insert into filter(ime, opis,korisnik)
+	values('ime3', 'opis3', 2);
 --zadaci
 insert into zadatak(
 		ime,
