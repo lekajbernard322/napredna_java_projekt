@@ -18,7 +18,7 @@
 					<div>		
 						<div th:each="zadatak : ${zadaci.?[stanje.equalsIgnoreCase('__${s}__')]}" 
 							 class="card"
-							 style="margin-top: 5px">
+							 style="margin: 5px">
 							<div class="card-body">
 								<h6 class="card-title" th:text="${zadatak.ime}"></h6>
 								<div>
