@@ -64,6 +64,7 @@ public class ProjektController {
 		
 		model.addAttribute("sviKorisnici", sviKorisnici);
 		model.addAttribute("projektFormModel", new ProjektFormModel());
+		model.addAttribute("isEdit", Boolean.FALSE);
 		
 		return "projekt/stvoriUredi";
 	}
@@ -75,21 +76,41 @@ public class ProjektController {
 		
 		projekt = projektRepository.saveAndFlush(projekt);
 		
-		return "redirect:/projekt/detalji?id=" + projekt.getId();
+		return "redirect:/projekt/lista";
 	}
 	
 	@GetMapping("/uredi/{id}")
-	public String urediProjekt(Model model, @PathVariable("id") Integer id) throws Exception {
+	public String urediProjekt(Model model, @PathVariable("id") Integer id) throws RuntimeException {
 		
 		Optional<Projekt> projekt = projektRepository.findById(id);
+		List<Korisnik> sviKorisnici = korisnikRepository.findAll();
 		
-		Projekt p = projekt.orElseThrow(() -> new Exception("Projekt sa id " + id + " ne postoji!"));
+		Projekt p = projekt.orElseThrow(() -> new RuntimeException("Projekt sa id " + id + " ne postoji!"));
 		
 		ProjektFormModel projektFormModel = conversionService.convert(p, ProjektFormModel.class);
 		
+		model.addAttribute("sviKorisnici", sviKorisnici);
 		model.addAttribute("projektFormModel", projektFormModel);
+		model.addAttribute("isEdit", Boolean.TRUE);
 		
 		return "projekt/stvoriUredi";
+	}
+	
+	@PostMapping("/uredi")
+	public String spremiUredeniProjekt(ProjektFormModel projektFormModel) throws RuntimeException {
+		
+		Optional<Projekt> projekt = projektRepository.findById(projektFormModel.getId());
+
+		Projekt p = projekt.orElseThrow(() -> new RuntimeException("Projekt sa id " + projektFormModel.getId() + " ne postoji!"));
+		
+		p.setIme(projektFormModel.getIme());
+		p.setOpis(projektFormModel.getOpis());
+		p.getKorisnici().clear();
+		p.getKorisnici().addAll(projektFormModel.getKorisnici());
+		
+		projektRepository.save(p);
+		
+		return "redirect:/projekt/lista";
 	}
 
 }

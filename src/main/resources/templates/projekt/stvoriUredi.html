@@ -16,9 +16,10 @@
 					<div class="card-text">
 						<div>
 							<form name='f' 
-								  th:action="@{/projekt/novi}"
+								  th:action="${isEdit} ? @{/projekt/uredi} : @{/projekt/novi}"
 								  th:object="${projektFormModel}" 
 								  method="POST">
+								<input type="hidden" th:field="*{id}" name="id" id="id"/>
 								<div class="form-group">
 									<label for="ime">Ime:</label>
 									<input type="text"

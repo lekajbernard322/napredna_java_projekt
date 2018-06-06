@@ -9,6 +9,11 @@
 <section layout:fragment="content">
     <br>
     <div class="container">
+    
+    	<div class="text-right" style="margin-bottom: 5px">
+			<a class="btn btn-primary" th:href="@{/projekt/uredi/{id}(id=__${projekt.id}__)}">Uredi</a>
+		</div>
+    	
         <div>
             <table class="table table-striped">
                 <tr>
