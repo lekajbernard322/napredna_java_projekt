@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -41,17 +43,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.csrf()
 				.disable()
-				.authorizeRequests()
+			.authorizeRequests()
 				.antMatchers("/registracija").anonymous()
 				.anyRequest().authenticated()
-				.and()
-			.formLogin()
-				.loginPage("/prijava")
-				.defaultSuccessUrl("/projekt/lista", true)
-				.failureUrl("/prijava?error=true")
-				.permitAll()
-				.and()
-			.logout()
-				.permitAll();
+			.and()
+				.formLogin()
+					.loginPage("/prijava")
+					.defaultSuccessUrl("/projekt/lista", true)
+					.failureUrl("/prijava?error=true")
+					.permitAll()
+			.and()
+				.logout()
+					.permitAll();
+		
+		http.sessionManagement().maximumSessions(1).sessionRegistry(sessionRegistry()).expiredUrl("/login");
 	}
+	
+	@Bean
+	public SessionRegistry sessionRegistry() {
+		return new SessionRegistryImpl();
+	}
+	
 }
