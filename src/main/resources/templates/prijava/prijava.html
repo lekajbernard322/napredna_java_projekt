@@ -9,9 +9,25 @@
 	<div th:replace="fragmenti/osnovni :: header"></div>
 	
 	<div class="container">
+	
 		<div class="row">
-		<div class="card col-md-4 offset-md-4"
-			 style="margin-top: 50px">
+			<div class="col-md-4 offset-md-4"
+				 style="margin-top: 40px; padding: 0">
+			 	<div th:if="${(param.logout != null)}" 
+			 		 class="alert alert-info" 
+			 		 role="alert">
+				  	Uspješno ste odjavljeni!
+				</div>
+				<div th:if="${(param.error != null)}" 
+			 		 class="alert alert-danger" 
+			 		 role="alert">
+				  	Pogreška u autentikaciji!
+				</div>
+			 </div>
+		 </div>
+		
+		<div class="row">
+		<div class="card col-md-4 offset-md-4">
 			<div class="card-body">
 				<h2 class="card-title">Prijavi se</h2>
 				<div class="card-text">
