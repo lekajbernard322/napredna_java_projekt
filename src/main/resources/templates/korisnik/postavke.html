@@ -3,12 +3,12 @@
       layout:decorate="~{decorators/layout.html}" th:with="nav='postavke'">
 <head>
     <meta charset="UTF-8">
-    <title>Postavke</title>
+    <title th:text="#{postavke}"></title>
 </head>
 <body>
 <section layout:fragment="content">
     <br />
-    <h2 class="card-title">Promjena lozinke</h2>
+    <h2><span class="card-title" th:text="#{lozinka.promjeni}"></span>:</h2>
     <br />
     <div class="card-text col-md-4">
         <div>
@@ -16,7 +16,7 @@
                   th:object="${korisnikFormModel}"
                   method="POST">
                 <div class="form-group">
-                    <label for="lozinka">Lozinka:</label>
+                    <label for="lozinka" th:text="#{lozinka}"></label>:
                     <input type="password"
                            th:field="*{lozinka}"
                            th:errorclass="border-danger"
@@ -29,7 +29,7 @@
                     </small>
                 </div>
                 <div class="form-group">
-                    <label for="lozinkaPotvrda">Potvrdi lozinku:</label>
+                    <label for="lozinkaPotvrda" th:text="#{lozinka.potvrdi}"></label>:
                     <input type="password"
                            th:field="*{lozinkaPotvrda}"
                            th:errorclass="border-danger"
@@ -46,7 +46,7 @@
                     <input name="submit"
                            type="submit"
                            class="btn btn-primary"
-                           value="Pošalji" />
+                           th:value="#{posalji}" />
                 </div>
             </form>
         </div>

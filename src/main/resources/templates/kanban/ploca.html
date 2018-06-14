@@ -3,12 +3,12 @@
       layout:decorate="~{decorators/layout.html}" th:with="nav='kanban'">
 <head>
 	<meta charset="UTF-8">
-	<title>Kanban</title>
+	<title th:text="#{kanban}"></title>
 </head>
 <body>
 
 	<section layout:fragment="content">
-		<h3 class="text-center" style="margin-top: 10px">Kanban ploča</h3>
+		<h3 class="text-center" style="margin-top: 10px" th:text="#{kanban.ploca}"></h3>
 		<div th:replace="fragmenti/kanban :: ploca"></div>
 	</section>
 

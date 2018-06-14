@@ -35,17 +35,25 @@
 	
 		  	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		    	<ul class="navbar-nav ml-auto">
+					<li class="navbar-item form-inline">
+						<span class="navbar-text" th:text="#{jezik.promjeni}"></span>:
+						<select id="locales" class="form-control d-inline">
+							<option value=""></option>
+							<option value="en" th:text="#{jezik.en}"></option>
+							<option value="hr" th:text="#{jezik.hr}"></option>
+						</select>
+					</li>
 		    		<li class="navbar-item" style="margin-right: 10px" sec:authorize="isAuthenticated()">
-		    			<div class="navbar-text">Dobrodošli, <span sec:authentication="name"></span>.</div>
+						<div class="navbar-text"><span th:text="#{pozdrav}"></span>, <span sec:authentication="name"></span>.</div>
 		    		</li>
 				    <li class="navbar-item" sec:authorize="isAuthenticated()">
-				      	<a th:href="@{/logout}" class="nav-link">Odjava</a>
+				      	<a th:href="@{/logout}" class="nav-link" th:text="#{odjava}"></a>
 				   	</li>
 				   	<li class="navbar-item" sec:authorize="!isAuthenticated()">
-				      	<a th:href="@{/registracija}" class="nav-link">Registracija</a>
+				      	<a th:href="@{/registracija}" class="nav-link" th:text="#{registracija}"></a>
 				   	</li>
 				   	<li class="navbar-item" sec:authorize="!isAuthenticated()">
-				      	<a th:href="@{/login}" class="nav-link">Prijava</a>
+				      	<a th:href="@{/login}" class="nav-link" th:text="#{prijava}"></a>
 				   	</li>
 				</ul>
 		  	</div>
@@ -54,13 +62,13 @@
 	
 	<th:block th:fragment="sidenav">
 		<div id="sidenav" class="sidenav col-md-2">
-			<a th:href="@{/projekt/lista}" th:classappend="${nav} == 'projekt' ? activeItem">Projekti</a>
-			<a th:href="@{/filter/lista}" th:classappend="${nav} == 'filter' ? activeItem">Filtri</a>
-			<a th:href="@{/zadatak/novi}" th:classappend="${nav} == 'zadatak' ? activeItem">Novi Zadatak</a>
-			<a th:href="@{/kanban}" th:classappend="${nav} == 'kanban' ? activeItem">Kanban</a>
-			<a th:href="@{/timesheet}">Timesheet</a>
-			<a th:href="@{/statistika}">Statistika</a>
-			<a th:href="@{/korisnik/postavke}" th:classappend="${nav} == 'postavke' ? activeItem">Postavke</a>
+			<a th:href="@{/projekt/lista}" th:classappend="${nav} == 'projekt' ? activeItem" th:text="#{projekti}"></a>
+			<a th:href="@{/filter/lista}" th:classappend="${nav} == 'filter' ? activeItem" th:text="#{filtri}"></a>
+			<a th:href="@{/zadatak/novi}" th:classappend="${nav} == 'zadatak' ? activeItem" th:text="#{n_zad}"></a>
+			<a th:href="@{/kanban}" th:classappend="${nav} == 'kanban' ? activeItem" th:text="#{kanban}"></a>
+			<a th:href="@{/timesheet}" th:text="#{timesheet}"></a>
+			<a th:href="@{/statistika}" th:text="#{statistika}"></a>
+			<a th:href="@{/korisnik/postavke}" th:classappend="${nav} == 'postavke' ? activeItem" th:text="#{postavke}"></a>
 		</div>
 	</th:block>
 	
@@ -75,7 +83,21 @@
 	    		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
 	    		crossorigin="anonymous"></script>
 	   	<script type="text/javascript" th:src="@{/js/bootstrap-multiselect.js}"></script>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+		</script>
+		<script type="text/javascript">
+            $(document).ready(function() {
+                $("#locales").change(function () {
+                    var selectedOption = $('#locales').val();
+                    if (selectedOption != ''){
+                        window.location.replace(''  + '?lang=' + selectedOption);
+                    }
+                });
+            });
+		</script>
 	</th:block>
+
 
 </body>
 </html>

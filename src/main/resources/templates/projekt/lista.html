@@ -3,25 +3,25 @@
 	  layout:decorate="~{decorators/layout.html}" th:with="nav='projekt'">
 <head>
 	<meta charset="UTF-8"/>
-	<title>Popis projekata</title>
+	<title th:text="#{projekt.lista}"></title>
 </head>
 <body>
 
 	<section layout:fragment="content">
 		<br>
-		<h2>Projekti</h2> (<span th:text="${korisnik}"></span>)
+		<h2 th:text="#{projekti}"></h2> (<span th:text="${korisnik}"></span>)
 		<hr>
 		<div class="container">
 			<div class="text-right">
-				<a th:href="@{/projekt/novi}" class="card-link">Dodaj projekt...</a>
+				<a th:href="@{/projekt/novi}" class="card-link" th:text="#{projekt.dodaj}"></a>
 			</div>
 			<br>
 			<div th:if="${not #lists.isEmpty(projekti)}">
 				<table class="table table-striped">
 					<tr>
-						<th>Ime</th>
-						<th>Opis</th>
-						<th>Broj članova na projektu</th>
+						<th th:text="#{ime}"></th>
+						<th th:text="#{opis}"></th>
+						<th th:text="#{br_cl}"></th>
 					</tr>
 					<tr th:each="projekt : ${projekti}">
 						<td>

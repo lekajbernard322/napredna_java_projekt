@@ -20,7 +20,7 @@
 								  th:object="${filterFormModel}"
 								  method="POST">
 								<div class="form-group">
-									<label for="ime">Ime:</label>
+									<label for="ime" th:text="#{ime}"></label>:
 									<input type="text"
 										   th:field="*{ime}"
 										   th:errorclass="border-danger"
@@ -35,7 +35,7 @@
 						   		  </small>
 								</div>
 								<div class="form-group">
-									<label for="opis">Opis:</label>
+									<label for="opis" th:text="#{opis}"></label>:
 									<textarea name="opis"
 											  th:field="*{opis}" 
 										   	  id="opis"
@@ -47,7 +47,7 @@
 									<input name="submit" 
 										   type="submit"
 										   class="btn btn-primary" 
-										   value="Spremi" />
+										   th:value="#{spremi}" />
 								</div>
 							</form>
 						</div>

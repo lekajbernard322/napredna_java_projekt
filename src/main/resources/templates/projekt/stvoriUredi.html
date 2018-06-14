@@ -3,7 +3,7 @@
       layout:decorate="~{decorators/layout.html}" th:with="nav='projekt'">
 <head>
 <meta charset="UTF-8">
-<title>Forma za projekt</title>
+<title th:text="#{projekt.forma}"></title>
 </head>
 <body>
 	<section layout:fragment="content">
@@ -12,7 +12,7 @@
 			<div class="card col-md-6 offset-md-3"
 			 	 style="margin-top: 50px">
 				<div class="card-body">
-					<h2 class="card-title text-center">Forma za projekt</h2>
+					<h2 class="card-title text-center" th:text="#{projekt.forma}"></h2>
 					<div class="card-text">
 						<div>
 							<form name='f' 
@@ -21,7 +21,7 @@
 								  method="POST">
 								<input type="hidden" th:field="*{id}" name="id" id="id"/>
 								<div class="form-group">
-									<label for="ime">Ime:</label>
+									<label for="ime" th:text="#{ime}"></label>:
 									<input type="text"
 										   th:field="*{ime}"
 										   th:errorclass="border-danger"
@@ -36,7 +36,7 @@
 						   		  </small>
 								</div>
 								<div class="form-group">
-									<label for="opis">Opis:</label>
+									<label for="opis" th:text="#{opis}"></label>:
 									<textarea name="opis"
 											  th:field="*{opis}" 
 										   	  id="opis"
@@ -44,7 +44,7 @@
 								   </textarea>
 								</div>
 								<div class="form-group">
-									<label for="korisnici">Korisnici:</label>
+									<label for="korisnici" th:text="#{korisnici}"></label>:
 									<select class="form-control" th:field="*{korisnici}" multiple="multiple">
 									  	<option th:each="k : ${sviKorisnici}" 
 									          th:value="${k.id}" 
@@ -56,7 +56,7 @@
 									<input name="submit" 
 										   type="submit"
 										   class="btn btn-primary" 
-										   value="Spremi" />
+										   th:value="#{spremi}" />
 								</div>
 							</form>
 						</div>

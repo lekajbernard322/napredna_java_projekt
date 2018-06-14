@@ -11,14 +11,14 @@
     <div class="container">
     
     	<div class="text-right" style="margin-bottom: 5px">
-			<a class="btn btn-primary" th:href="@{/projekt/uredi/{id}(id=__${projekt.id}__)}">Uredi</a>
+			<a class="btn btn-primary" th:href="@{/projekt/uredi/{id}(id=__${projekt.id}__)}" th:text="#{uredi}"></a>
 		</div>
     	
         <div>
             <table class="table table-striped">
                 <tr>
-                    <th>Ime</th>
-                    <th>Opis</th>
+                    <th th:text="#{ime}"></th>
+                    <th th:text="#{opis}"></th>
 
                 </tr>
                 <tr>
@@ -27,7 +27,7 @@
                         <td th:text="${projekt.opis}"></td>
 
                 </tr>
-                <tr><th>Korisnici</th>
+                <tr><th th:text="#{korisnici}"></th>
 
                     <td> <p th:each="korisnik : ${korisnici}"
                      th:text="${korisnik.ime} + ' ' + ${korisnik.prezime}"> </p></td>

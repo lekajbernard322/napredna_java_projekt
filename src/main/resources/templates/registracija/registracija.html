@@ -3,7 +3,7 @@
 <head>
     <th:block th:include="fragmenti/osnovni :: head"></th:block>
     <meta charset="UTF-8">
-	<title>Registracija</title>
+	<title th:text="#{registracija}"></title>
 </head>
 <body>
 	<div th:replace="fragmenti/osnovni :: header"></div>
@@ -13,7 +13,7 @@
 		<div class="card col-md-4 offset-md-4"
 			 style="margin-top: 50px">
 			<div class="card-body">
-				<h2 class="card-title">Registriraj se</h2>
+				<h2 class="card-title" th:text="#{registriraj}"></h2>
 				<div class="card-text">
 					<div>
 						<form name='f'
@@ -21,7 +21,7 @@
 							  th:object="${korisnikFormModel}"
 							  method="POST">
 							<div class="form-group">
-								<label for="korisnickoIme">Korisničko ime:</label>
+								<label for="korisnickoIme" th:text="#{prijava.ime}"></label>:
 								<input type="text" 
 									   th:field="*{korisnickoIme}"
 									   th:errorclass="border-danger"
@@ -35,7 +35,7 @@
 					   		  	</small>
 							</div>
 							<div class="form-group">
-								<label for="ime">Ime:</label>
+								<label for="ime" th:text="#{ime}"></label>:
 								<input type="text"
 									   th:field="*{ime}"
 									   th:errorclass="border-danger"
@@ -48,7 +48,7 @@
 					   		  </small>
 							</div>
 							<div class="form-group">
-								<label for="prezime">Prezime:</label>
+								<label for="prezime" th:text="#{prezime}"></label>:
 								<input type="text"
 									   th:field="*{prezime}"
 									   th:errorclass="border-danger"
@@ -61,7 +61,7 @@
 					   		  	</small>
 							</div>
 							<div class="form-group">
-								<label for="lozinka">Lozinka:</label>
+								<label for="lozinka" th:text="#{lozinka}"></label>:
 								<input type="password"
 									   th:field="*{lozinka}"
 									   th:errorclass="border-danger"
@@ -74,7 +74,7 @@
 					   		  	</small>
 							</div>
 							<div class="form-group">
-								<label for="lozinkaPotvrda">Potvrdi lozinku:</label>
+								<label for="lozinkaPotvrda" th:text="#{lozinka.potvrdi}"></label>:
 								<input type="password"
 									   th:field="*{lozinkaPotvrda}"
 									   th:errorclass="border-danger"
@@ -91,7 +91,7 @@
 								<input name="submit" 
 									   type="submit"
 									   class="btn btn-primary" 
-									   value="Pošalji" />
+									   th:value="#{posalji}" />
 							</div>
 						</form>
 					</div>

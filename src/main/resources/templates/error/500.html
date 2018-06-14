@@ -5,14 +5,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Error 500!</title>
+    <title th:text="#{error.500.t}"></title>
 </head>
 <body>
 <section layout:fragment="content">
 
     <br />
     <div class="alert alert-danger">
-        <h2>Interna greška na serveru!</h2>
+        <h2 th:text="#{error.500.m}"></h2>
         <hr />
         (<span th:text="${status}"></span>)
     </div>

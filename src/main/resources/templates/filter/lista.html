@@ -3,24 +3,24 @@
       layout:decorate="~{decorators/layout.html}" th:with="nav='filter'">
 <head>
     <meta charset="UTF-8"/>
-    <title>Popis filtera</title>
+    <title th:text="#{filter.popis}"></title>
 </head>
 <body>
 
 <section layout:fragment="content">
     <br>
-    <h2>Filtri</h2>
+    <h2 th:text="#{filteri}"></h2>
     <hr>
     <div class="container">
         <div class="text-right">
-            <a th:href="@{/filter/novi}" class="card-link">Dodaj filter...</a>
+            <a th:href="@{/filter/novi}" class="card-link" th:text="#{filter.dodaj}"></a>
         </div>
         <br>
         <div th:if="${not #lists.isEmpty(filtri)}">
             <table class="table table-striped">
                 <tr>
-                    <th>Ime</th>
-                    <th>Opis</th>
+                    <th th:text="#{ime}"></th>
+                    <th th:text="#{opis}"></th>
                     <th></th>
                 </tr>
                 <tr th:each="filter : ${filtri}">
@@ -28,7 +28,7 @@
                         <p th:text="${filter.ime}"></p>
                     </td>
                     <td th:text="${filter.opis}"></td>
-                    <td><a th:href="@{'/filter/uredi?id=' + ${filter.id}}"><p>Uredi</p></a>
+                    <td><a th:href="@{'/filter/uredi?id=' + ${filter.id}}"><p th:text="#{uredi}"></p></a>
                     </td>
                 </tr>
             </table>

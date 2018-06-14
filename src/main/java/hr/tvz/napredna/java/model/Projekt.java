@@ -35,4 +35,37 @@ public class Projekt {
 			inverseJoinColumns = { @JoinColumn(name = "projekt_id") })
     private Set<Korisnik> korisnici = new HashSet<>();
 
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getIme() {
+        return ime;
+    }
+
+    public void setIme(String ime) {
+        this.ime = ime;
+    }
+
+    public String getOpis() {
+        return opis;
+    }
+
+    public void setOpis(String opis) {
+        this.opis = opis;
+    }
+
+    public Set<Korisnik> getKorisnici() {
+        return korisnici;
+    }
+
+    public void setKorisnici(Set<Korisnik> korisnici) {
+        this.korisnici = korisnici;
+    }
 }

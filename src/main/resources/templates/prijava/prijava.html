@@ -3,7 +3,7 @@
 <head>
     <th:block th:include="fragmenti/osnovni :: head"></th:block>
     <meta charset="UTF-8">
-	<title>Prijava</title>
+	<title th:text="#{prijava}"></title>
 </head>
 <body>
 	<div th:replace="fragmenti/osnovni :: header"></div>
@@ -16,12 +16,12 @@
 			 	<div th:if="${(param.logout != null)}" 
 			 		 class="alert alert-info" 
 			 		 role="alert">
-				  	Uspješno ste odjavljeni!
+				  	<span th:text="#{prijava.odjava}"></span>
 				</div>
 				<div th:if="${(param.error != null)}" 
 			 		 class="alert alert-danger" 
 			 		 role="alert">
-				  	Pogreška u autentikaciji!
+				  	<span th:text="#{prijava.greska}"></span>
 				</div>
 			 </div>
 		 </div>
@@ -29,12 +29,12 @@
 		<div class="row">
 		<div class="card col-md-4 offset-md-4">
 			<div class="card-body">
-				<h2 class="card-title">Prijavi se</h2>
+				<h2 class="card-title" th:text="#{prijava}"></h2>
 				<div class="card-text">
 					<div>
 						<form name='f' action="prijava" method="POST">
 							<div class="form-group">
-								<label for="username">Korisničko ime:</label>
+								<label for="username" th:text="#{prijava.ime}"></label>
 								<input type="text" 
 									   name="username"
 									   id="username"
@@ -42,7 +42,7 @@
 									   class="form-control" />
 							</div>
 							<div>
-								<label for="password">Lozinka:</label>
+								<label for="password" th:text="#{lozinka}"></label>
 								<input type="password" 
 									   name="password" 
 									   id="password"
@@ -53,7 +53,7 @@
 								<input name="submit" 
 									   type="submit"
 									   class="btn btn-primary" 
-									   value="Prijava" />
+									   th:value="#{prijava}" />
 							</div>
 						</form>
 					</div>
