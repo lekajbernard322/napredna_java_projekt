@@ -11,10 +11,10 @@
     	<link rel="stylesheet" 
     	  	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
     	  	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
-    	  	crossorigin="anonymous">
+    	  	crossorigin="anonymous"/>
     	<link rel="stylesheet"
-    		  th:href="@{/css/appStyle.css}">
-    	<link rel="stylesheet" th:href="@{/css/bootstrap-multiselect.css}" type="text/css"/>
+    		  th:href="@{/css/appStyle.css}"/>
+    	<link rel="stylesheet" th:href="@{/css/bootstrap-multiselect.css}" type="text/html"/>
 	</th:block>
 </head>
 <body>
@@ -41,6 +41,7 @@
 							<option value=""></option>
 							<option value="en" th:text="#{jezik.en}"></option>
 							<option value="hr" th:text="#{jezik.hr}"></option>
+							<option value="fr" th:text="#{jezik.fr}"></option>
 						</select>
 					</li>
 		    		<li class="navbar-item" style="margin-right: 10px" sec:authorize="isAuthenticated()">
@@ -84,8 +85,6 @@
 	    		crossorigin="anonymous"></script>
 	   	<script type="text/javascript" th:src="@{/js/bootstrap-multiselect.js}"></script>
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
-		</script>
 		<script type="text/javascript">
             $(document).ready(function() {
                 $("#locales").change(function () {
