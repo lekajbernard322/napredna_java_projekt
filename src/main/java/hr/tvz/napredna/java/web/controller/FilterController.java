@@ -1,22 +1,23 @@
 package hr.tvz.napredna.java.web.controller;
 
-import hr.tvz.napredna.java.model.*;
-import hr.tvz.napredna.java.model.Korisnik;
-import hr.tvz.napredna.java.repository.FilterRepository;
-import hr.tvz.napredna.java.repository.KorisnikRepository;
-import hr.tvz.napredna.java.repository.ProjektRepository;
+import java.security.Principal;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.security.Principal;
-import java.util.List;
-import java.util.Optional;
+import hr.tvz.napredna.java.model.Filter;
+import hr.tvz.napredna.java.model.FilterFormModel;
+import hr.tvz.napredna.java.model.Korisnik;
+import hr.tvz.napredna.java.model.Projekt;
+import hr.tvz.napredna.java.repository.FilterRepository;
+import hr.tvz.napredna.java.repository.KorisnikRepository;
+import hr.tvz.napredna.java.repository.ProjektRepository;
 
 @Controller
 @RequestMapping("/filter")
@@ -51,7 +52,7 @@ public class FilterController {
             List<Projekt> sviProjekti = projektRepository.findAll();
             model.addAttribute("filterFormModel", new FilterFormModel());
             model.addAttribute("sviKorisnici", sviKorisnici);
-            model.addAttribute("sviProjekti", sviKorisnici);
+            model.addAttribute("sviProjekti", sviProjekti);
             return "filter/stvoriUredi";
         }
 
