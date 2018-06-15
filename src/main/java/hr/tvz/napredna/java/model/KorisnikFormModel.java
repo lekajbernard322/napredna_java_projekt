@@ -7,20 +7,20 @@ public class KorisnikFormModel {
 	
 	private Integer id;
 	
-	@NotNull(message = "Ne smije biti prazno.")
-	@Size(min = 5, message = "Korisničko ime mora imati najmanje 5 znakova.")
+	@NotNull(message = "{validacija.not_null}")
+	@Size(min = 5, message = "{validacija.size_5}")
 	private String korisnickoIme;
 	
-	@NotNull(message = "Ne smije biti prazno.")
-	@Size(min = 2, message = "Ime mora imati najmanje 2 znaka.")
+	@NotNull(message = "{validacija.not_null}")
+	@Size(min = 2, message = "{validacija.size_2}")
 	private String ime;
 	
-	@NotNull(message = "Ne smije biti prazno.")
-	@Size(min = 2, message = "Prezime mora imati najmanje 2 znaka.")
+	@NotNull(message = "{validacija.not_null}")
+	@Size(min = 2, message = "{validacija.size_2}")
 	private String prezime;
 	
-	@NotNull(message = "Ne smije biti prazno.")
-	@Size(min = 8, message = "Lozinka mora imati najmanje 8 znakova.")
+	@NotNull(message = "{validacija.not_null}")
+	@Size(min = 8, message = "{validacija.size_8}")
 	private String lozinka;
 	
 	private String lozinkaPotvrda;

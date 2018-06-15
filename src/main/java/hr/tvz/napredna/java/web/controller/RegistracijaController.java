@@ -1,8 +1,11 @@
 package hr.tvz.napredna.java.web.controller;
 
+import java.util.Locale;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -17,6 +20,9 @@ import hr.tvz.napredna.java.repository.KorisnikRepository;
 
 @Controller
 public class RegistracijaController {
+	
+	@Autowired
+	private MessageSource messageSource;
 	
 	@Autowired
 	private ConversionService conversionService;
@@ -35,7 +41,7 @@ public class RegistracijaController {
 	
 	@PostMapping("/registracija")
 	public String registracija(@Valid KorisnikFormModel korisnikFormModel,
-			BindingResult result) {
+			BindingResult result, Locale locale) {
 		
 		Korisnik korisnikPoKorisnickomImenu = 
 				korisnikRepository.findByKorisnickoIme(korisnikFormModel.getKorisnickoIme());
@@ -43,14 +49,14 @@ public class RegistracijaController {
 			result.rejectValue(
 					"korisnickoIme",
 					"korisnickoIme", 
-					"Korisničko ime već postoji.");
+					messageSource.getMessage("validacija.korisnik_postoji", null, locale));
 		}
 		
 		if (!korisnikFormModel.getLozinka().equals(korisnikFormModel.getLozinkaPotvrda())) {
 			result.rejectValue(
 					"lozinkaPotvrda",
 					"lozinkaPotvrda",
-					"Lozinke se ne podudaraju!");
+					messageSource.getMessage("validacija.lozinke_podudaraju", null, locale));
 		}
 		
 		if (result.hasErrors()) {

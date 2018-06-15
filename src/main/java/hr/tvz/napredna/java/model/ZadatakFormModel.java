@@ -9,11 +9,11 @@ public class ZadatakFormModel {
 	
 	private Integer id;
 	
-	@NotNull(message = "Ne smije biti prazno.")
-	@Size(min = 5, max = 50, message = "Ime projekta mora imati od 5 do 50 znakova.")
+	@NotNull(message = "{validacija.not_null}")
+	@Size(min = 5, max = 50, message = "{validacija.size_5_50}")
 	private String ime;
 	
-	@Size(max = 500, message = "Opis smije imati maksimalno 500 znakova.")
+	@Size(max = 500, message = "{validacija.size_500}")
 	private String opis;
 	
 	private String tip;
