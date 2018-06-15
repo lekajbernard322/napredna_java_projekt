@@ -36,12 +36,12 @@
 		  	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		    	<ul class="navbar-nav ml-auto">
 					<li class="navbar-item form-inline">
-						<span class="navbar-text" th:text="#{jezik.promjeni}"></span>:
-						<select id="locales" class="form-control d-inline">
-							<option value=""></option>
-							<option value="en" th:text="#{jezik.en}"></option>
-							<option value="hr" th:text="#{jezik.hr}"></option>
-						</select>
+							<span class="navbar-text" th:text="#{jezik.promjeni}"></span>:
+							<select id="locales" class="form-control d-inline">
+								<option value=""></option>
+								<option value="en" th:text="#{jezik.en}"></option>
+								<option value="hr" th:text="#{jezik.hr}"></option>
+							</select>
 					</li>
 		    		<li class="navbar-item" style="margin-right: 10px" sec:authorize="isAuthenticated()">
 						<div class="navbar-text"><span th:text="#{pozdrav}"></span>, <span sec:authentication="name"></span>.</div>
@@ -84,8 +84,6 @@
 	    		crossorigin="anonymous"></script>
 	   	<script type="text/javascript" th:src="@{/js/bootstrap-multiselect.js}"></script>
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
-		</script>
 		<script type="text/javascript">
             $(document).ready(function() {
                 $("#locales").change(function () {
