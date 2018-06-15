@@ -24,6 +24,7 @@
 								<div>
 									<div th:text="${zadatak.opis}"></div>
 								</div>
+								<a th:href="@{'/zadatak/detalji?id=' + ${zadatak.id}}" th:text="#{zadatak.detalji}"></a>
 							</div>
 							<div class="card-footer text-muted">
 						    	<small th:text="${'Tip: ' + zadatak.tip}"></small>
@@ -37,6 +38,5 @@
 		</div>
 	</div>
 </th:block>
-
 </body>
 </html>
