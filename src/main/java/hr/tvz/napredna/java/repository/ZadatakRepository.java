@@ -12,5 +12,4 @@ import hr.tvz.napredna.java.model.Zadatak;
 public interface ZadatakRepository extends JpaRepository<Zadatak, Integer> {
 
     List<Zadatak> findAllByAssignee(Korisnik korisnik);
-    
 }
