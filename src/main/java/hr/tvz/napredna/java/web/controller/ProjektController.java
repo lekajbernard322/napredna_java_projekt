@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ import hr.tvz.napredna.java.model.Projekt;
 import hr.tvz.napredna.java.model.ProjektFormModel;
 import hr.tvz.napredna.java.repository.KorisnikRepository;
 import hr.tvz.napredna.java.repository.ProjektRepository;
+import hr.tvz.napredna.java.util.SecurityUtils;
 
 
 @Controller
@@ -35,9 +37,9 @@ public class ProjektController {
 
 
 	@GetMapping("/lista")
-	public String lista(Principal principal, Model model) {
+	public String lista(Principal principal, Model model, Authentication auth) {
 		Korisnik korisnik = korisnikRepository.findByKorisnickoIme(principal.getName());
-        if (korisnik.getKorisnickoIme().equalsIgnoreCase("admin")){
+        if (SecurityUtils.hasAnyRole(auth, "ROLE_ADMIN")){
 		model.addAttribute("projekti", projektRepository.findAll());}else{
 		    model.addAttribute("projekti", projektRepository.findAllByKorisnici(korisnik));}
 		model.addAttribute("korisnik", korisnik.getKorisnickoIme());
