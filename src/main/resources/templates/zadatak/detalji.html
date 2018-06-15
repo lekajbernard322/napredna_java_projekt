@@ -11,22 +11,32 @@
 		<div class="row">
 			<div class="card col-md-6 offset-md-3"
 			 	 style="margin-top: 50px">
-				<div class="card-body">
-					<div class="card-body">
-						<h3 class="card-title" th:text="${zadatak.ime}"></h3>
+				<div class="card-body">					
+					<h3 class="card-title" th:text="${zadatak.ime}"></h3>
+					<div>
 						<h6 th:text="#{opis}"></h6>
-						<p class="card-text" th:text="${zadatak.opis}"></p>
+						<p class="card-subtitle" th:text="${zadatak.opis}"></p>
+					</div>
+					<div>
 						<h6 th:text="#{projekt}"></h6>
 						<p class="card-subtitle" th:text="${zadatak.projekt.ime}"></p>
+					</div>
+					<div>
 						<h6 th:text="#{zadatak.vrijeme}"></h6>
 						<p class="card-subtitle" th:text="${zadatak.procjenaVremena}"></p>
+					</div>
+					<div>
 						<h6 th:text="#{reporter}"></h6>
 						<p class="card-subtitle" th:text="${zadatak.reporter.korisnickoIme}"></p>
-						<h6 th:text="#{izvrsitelj}"></h6>
-						<p class="card-subtitle" th:text="${zadatak.assignee.korisnickoIme}"></p>
-						<h6 th:text="#{zadatak.stanje}"></h6>
-						<p class="card-subtitle" th:text="${zadatak.stanje}"></p>
 					</div>
+					<div>
+						<h6  th:text="#{izvrsitelj}"></h6>
+						<p class="card-subtitle" th:text="${zadatak.assignee.korisnickoIme}"></p>						
+					</div>
+					<div>
+						<h6 th:text="#{zadatak.stanje}"></h6>
+						<p class="card-subtitle" th:text="${zadatak.stanje}"></p>						
+					</div>		
 				</div>
 			</div>
 			<div class="card col-md-6 offset-md-3"
@@ -36,17 +46,18 @@
 				<div class="card mb-4" th:each="komentar : ${komentari}">
 					<div class="card-body">
 						<h6 class="card-subtitle text-muted" th:text="${komentar.autor.korisnickoIme}"></h6>
+						<small th:text="${komentar.vrijeme}"></small>
 						<p class="card-text" th:text="${komentar.tekst}"></p>
 					</div>			
 				</div>
 				<h6 class="card-title" th:text="#{komentar}"></h6>
-					<form  method="POST" th:action="@{/noviKomentar}" th:object="${KomentarFormModel}" class="form-horizontal">		    					
-						<div class="form-group">
-	      					<input type="text" class="form-control" id="tekst" name="tekst" th:field="*{tekst}" required>
-	      					<input type="hidden" id="zadatakId" th:field="*{zadatakId}" th:value="${zadatak.id}">
-	      					<br>
-	      					<input name="submit" type="submit" class="btn btn-secondary" th:value="#{komentar}"></input>
-	    				</div>
+				<form  name ="f" method="POST" th:action="@{/noviKomentar}" th:object="${KomentarFormModel}" class="form-horizontal">		    					
+					<div class="form-group">
+      					<input type="text" class="form-control" id="tekst" th:field="*{tekst}" required>
+      					<input type="hidden" id="zadatakId" name="zadatakId" th:value="${zadatak.id}">
+      					<br>
+      					<input name="submit" type="submit" class="btn btn-secondary" th:value="#{komentar}"></input>
+    				</div>
 				</form>
 			</div>		
 		</div>
