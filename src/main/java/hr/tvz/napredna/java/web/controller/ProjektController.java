@@ -47,11 +47,12 @@ public class ProjektController {
 	
 	@GetMapping("/detalji")
 	public String detail(Model model,Integer id) {
-		List<Projekt> pro = projektRepository.findAll();
+		Optional<Projekt> pro = projektRepository.findById(id);
+		
+		pro.orElseThrow(() -> new RuntimeException("Projekt sa tim ID ne postoji!"));
 
-
-        model.addAttribute("projekt",pro.get(id-1));
-        model.addAttribute("korisnici",pro.get(id-1).getKorisnici());
+        model.addAttribute("projekt",pro.get());
+        model.addAttribute("korisnici",pro.get().getKorisnici());
 
 
 		return "projekt/detalji";
