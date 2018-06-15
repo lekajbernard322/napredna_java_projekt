@@ -91,7 +91,9 @@
                 $("#locales").change(function () {
                     var selectedOption = $('#locales').val();
                     if (selectedOption != ''){
-                        window.location.replace(''  + '?lang=' + selectedOption);
+                        var url = new URL(window.location.href);
+	                    url.searchParams.set('lang', selectedOption);
+                       	window.location.assign(url.href);
                     }
                 });
             });
