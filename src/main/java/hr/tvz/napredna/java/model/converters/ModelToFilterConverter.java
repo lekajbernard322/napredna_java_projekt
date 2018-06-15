@@ -13,7 +13,8 @@ public class ModelToFilterConverter implements Converter<FilterFormModel, Filter
             filter.setId(model.getId());
         filter.setIme(model.getIme());
         filter.setOpis(model.getOpis());
-
+        filter.getKorisnici().addAll(model.getKorisnici());
+        filter.getProjekti().addAll(model.getProjekti());
         return filter;
     }
 }

@@ -41,17 +41,17 @@ public class FilterController {
                 model.addAttribute("filtri", filterRepository.findAll());}else{
                 model.addAttribute("filtri", korisnik.getFiltri());}
 
-
-
             return "filter/lista";
         }
 
 
         @GetMapping("/novi")
         public String noviFilter(Model model) {
-
+            List<Korisnik> sviKorisnici = korisnikRepository.findAll();
+            List<Projekt> sviProjekti = projektRepository.findAll();
             model.addAttribute("filterFormModel", new FilterFormModel());
-
+            model.addAttribute("sviKorisnici", sviKorisnici);
+            model.addAttribute("sviProjekti", sviKorisnici);
             return "filter/stvoriUredi";
         }
 

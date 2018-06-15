@@ -56,5 +56,18 @@ public class Filter  {
     @JoinColumn(name="korisnik")
     private Korisnik korisnik;
 
+    @ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE })
+    @JoinTable(
+            name = "filter_projekt",
+            joinColumns = { @JoinColumn(name = "projekt") },
+            inverseJoinColumns = { @JoinColumn(name = "filter_id") })
+    private Set<Projekt> projekti = new HashSet<>();
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE })
+    @JoinTable(
+            name = "filter_korisnik",
+            joinColumns = { @JoinColumn(name = "filter_id") },
+            inverseJoinColumns = { @JoinColumn(name = "korisnik_id") })
+    private Set<Korisnik> korisnici = new HashSet<>();
 
 }

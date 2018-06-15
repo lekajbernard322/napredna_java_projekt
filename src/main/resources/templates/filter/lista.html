@@ -21,6 +21,8 @@
                 <tr>
                     <th th:text="#{ime}"></th>
                     <th th:text="#{opis}"></th>
+                    <th th:text="#{odabrani korisnici}"></th>
+                    <th th:text="#{odabrani projekti}"></th>
                     <th></th>
                 </tr>
                 <tr th:each="filter : ${filtri}">
@@ -28,6 +30,10 @@
                         <p th:text="${filter.ime}"></p>
                     </td>
                     <td th:text="${filter.opis}"></td>
+                    <td> <p th:each="korisnik : ${filter.getKorisnici()}"
+                            th:text="${korisnik.ime} + ' ' + ${korisnik.prezime}"> </p></td>
+                    <td> <p th:each="projekt : ${filter.getProjekti()}"
+                            th:text="${projekt.ime}"> </p></td>
                     <td><a th:href="@{'/filter/uredi?id=' + ${filter.id}}"><p th:text="#{uredi}"></p></a>
                     </td>
                 </tr>

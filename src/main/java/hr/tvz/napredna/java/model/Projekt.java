@@ -35,6 +35,13 @@ public class Projekt {
 			inverseJoinColumns = { @JoinColumn(name = "projekt_id") })
     private Set<Korisnik> korisnici = new HashSet<>();
 
+    @ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE })
+    @JoinTable(
+            name = "filter_projekt",
+            joinColumns = { @JoinColumn(name = "filter_id") },
+            inverseJoinColumns = { @JoinColumn(name = "projekt") })
+    private Set<Korisnik> filtri = new HashSet<>();
+
 
 
     public int getId() {

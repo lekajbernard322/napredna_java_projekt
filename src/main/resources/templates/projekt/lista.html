@@ -28,6 +28,7 @@
 							<a th:href="@{'/projekt/detalji?id=' + ${projekt.id}}"><p th:text="${projekt.ime}"></p></a>
 						</td>
 						<td th:text="${projekt.opis}"></td>
+
 						<td th:text="${projekt.korisnici.size()}"></td>
 					</tr>
 				</table>

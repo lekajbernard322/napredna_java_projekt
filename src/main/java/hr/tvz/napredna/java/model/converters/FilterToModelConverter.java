@@ -11,7 +11,8 @@ public FilterFormModel convert(Filter filter) {
         model.setId(filter.getId());
         model.setIme(filter.getIme());
         model.setOpis(filter.getOpis());
-
+        model.getKorisnici().addAll(filter.getKorisnici());
+        model.getProjekti().addAll(filter.getProjekti());
         return model;
         }
 }
