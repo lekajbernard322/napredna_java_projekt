@@ -51,7 +51,7 @@
 					</div>			
 				</div>
 				<h6 class="card-title" th:text="#{komentar}"></h6>
-				<form  name ="f" method="POST" th:action="@{/noviKomentar}" th:object="${KomentarFormModel}" class="form-horizontal">		    					
+				<form  name ="f" method="POST" th:action="@{/zadatak/noviKomentar}" th:object="${KomentarFormModel}" class="form-horizontal">		    					
 					<div class="form-group">
       					<input type="text" class="form-control" id="tekst" th:field="*{tekst}" required>
       					<input type="hidden" id="zadatakId" name="zadatakId" th:value="${zadatak.id}">
