@@ -44,7 +44,13 @@
 					<div>
 						<h6 th:text="#{zadatak.stanje}"></h6>
 						<p class="card-subtitle" th:text="${zadatak.stanje}"></p>						
-					</div>		
+					</div>
+					<form  name ="f2" method="POST" th:action="@{/zadatak/promijeniStanje}" class="form-horizontal">		    					
+					<div class="form-group">
+      					<input type="hidden" id="id" name="id" th:value="${zadatak.id}">
+      					<input name="submit" type="submit" class="btn btn-secondary btn-sm" th:value="#{promijenistanje}"></input>
+    				</div>
+					</form>		
 				</div>
 			</div>
 			<div class="card col-md-6 offset-md-3"

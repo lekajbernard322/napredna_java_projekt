@@ -97,7 +97,7 @@ public class ZadatakController {
 	}
 	
 	@GetMapping("/detalji")
-	public String edtaljiZadatka(@RequestParam Integer id, Model model, Principal principal) {
+	public String detaljiZadatka(@RequestParam Integer id, Model model, Principal principal) {
 		Zadatak zadatak = zadatakRepository.findById(id).orElse(null);
 		List<Komentar> komentari = new ArrayList<>(); 
 		for(Komentar k : zadatak.getKomentari())
@@ -117,5 +117,22 @@ public class ZadatakController {
 		komentarRepository.save(komentar);
 		model.addAttribute("KomentarFormModel", new KomentarFormModel());
 		return "redirect:/zadatak/detalji?id="+zadatakId;
+	}
+	
+	@PostMapping("/promijeniStanje")
+	public String PromijeniStanje(@RequestParam Integer id, Model model, Principal principal) {
+		Zadatak z = zadatakRepository.findById(id).orElse(null);
+		if(z.getStanje().equals("To do"))
+			z.setStanje("Implementation");
+		else if(z.getStanje().equals("Implementation"))
+			z.setStanje("Testing");
+		else if(z.getStanje().equals("Testing"))
+			z.setStanje("Done");
+		else if(z.getStanje().equals("Done"))
+			z.setStanje("To do");
+		z.setDatumUredivan(new Timestamp(System.currentTimeMillis()));
+		zadatakRepository.save(z);
+		model.addAttribute("KomentarFormModel", new KomentarFormModel());
+		return "redirect:/zadatak/detalji?id="+id;
 	}
 }
