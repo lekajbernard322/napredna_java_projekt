@@ -77,9 +77,9 @@ CREATE TABLE filter_korisnik(
 
 CREATE TABLE filter_projekt(
 	filter_id int NOT NULL,
-	projekt int NOT NULL,
+	projekt_id int NOT NULL,
 	FOREIGN KEY (filter_id) REFERENCES filter(id),
-	FOREIGN KEY (projekt) REFERENCES projekt(id)
+	FOREIGN KEY (projekt_id) REFERENCES projekt(id)
 );
 
 CREATE TABLE filter_stanja(
@@ -149,6 +149,19 @@ insert into filter(ime, opis,korisnik)
 	values('ime2', 'opis2', 3);
 insert into filter(ime, opis,korisnik)
 	values('ime3', 'opis3', 2);
+	
+--filter_korisnik
+insert into filter_korisnik(filter_id, korisnik_id)
+	values(2, 1);
+insert into filter_korisnik(filter_id, korisnik_id)
+	values(2, 2);
+	
+--filter_projekt
+insert into filter_projekt(filter_id, projekt_id)
+	values(2, 1);
+insert into filter_projekt(filter_id, projekt_id)
+	values(2, 2);
+	
 --zadaci
 insert into zadatak(
 		ime,

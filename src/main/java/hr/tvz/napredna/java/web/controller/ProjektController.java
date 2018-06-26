@@ -1,6 +1,7 @@
 package hr.tvz.napredna.java.web.controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,11 +15,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import hr.tvz.napredna.java.enums.StanjeZadatka;
 import hr.tvz.napredna.java.model.Korisnik;
 import hr.tvz.napredna.java.model.Projekt;
 import hr.tvz.napredna.java.model.ProjektFormModel;
+import hr.tvz.napredna.java.model.Zadatak;
 import hr.tvz.napredna.java.repository.KorisnikRepository;
 import hr.tvz.napredna.java.repository.ProjektRepository;
+import hr.tvz.napredna.java.repository.ZadatakRepository;
 import hr.tvz.napredna.java.util.SecurityUtils;
 
 
@@ -30,11 +34,13 @@ public class ProjektController {
 	private ConversionService conversionService;
 
 	@Autowired
-	ProjektRepository projektRepository;
+	private ProjektRepository projektRepository;
 	
     @Autowired
-	KorisnikRepository korisnikRepository;
+	private KorisnikRepository korisnikRepository;
 
+    @Autowired
+    private ZadatakRepository zadatakRepository;
 
 	@GetMapping("/lista")
 	public String lista(Principal principal, Model model, Authentication auth) {
@@ -48,14 +54,19 @@ public class ProjektController {
 	}
 	
 	@GetMapping("/detalji")
-	public String detail(Model model,Integer id) {
+	public String detail(Model model,Integer id, Principal principal) {
 		Optional<Projekt> pro = projektRepository.findById(id);
+		List<Zadatak> zadaci = new ArrayList<>();
+		pro.ifPresent(p -> zadaci.addAll(zadatakRepository.findAllByProjekt(p)));
 		
 		pro.orElseThrow(() -> new RuntimeException("Projekt sa tim ID ne postoji!"));
 
         model.addAttribute("projekt",pro.get());
         model.addAttribute("korisnici",pro.get().getKorisnici());
-
+        
+        model.addAttribute("zadaci", zadaci);
+		model.addAttribute("stanja", StanjeZadatka.values());
+		model.addAttribute("showFilter", Boolean.FALSE);
 
 		return "projekt/detalji";
 	}

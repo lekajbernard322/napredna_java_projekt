@@ -74,13 +74,6 @@ public class Korisnik implements Serializable{
 			inverseJoinColumns = { @JoinColumn(name = "projekt_id") })
 	private Set<Projekt> projekti = new HashSet<>();
 
-	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE })
-	@JoinTable(
-			name = "filter_korisnik",
-			joinColumns = { @JoinColumn(name = "korisnik_id") },
-			inverseJoinColumns = { @JoinColumn(name = "filter_id") })
-	private Set<Projekt> filtrirano = new HashSet<>();
-
 	public Set<Filter> getFiltri() {
 		return filtri;
 	}

@@ -12,6 +12,27 @@
 	<div class="card">
 		<div class="card-body">
 			
+			<div th:if="${showFilter}">
+				<form name='f' 
+					  th:action="@{/kanban}" 
+					  method="GET"
+					  class="form-inline">
+					<div class="form-group mx-2 mb-2">
+						<select class="form-control" name="filterId">
+						  	<option th:each="filter : ${filtri}" 
+						          th:value="${filter.id}" 
+						          th:text="${filter.ime}"></option>
+						</select>
+					</div>
+					<div class="mb-2">
+						<input name="submit" 
+							   type="submit"
+							   class="btn btn-primary" 
+							   th:value="#{spremi}" />
+					</div>
+				</form>
+			</div>
+			
 			<div class="card-deck">
 				<div th:each="s : ${stanja}" class="card">
 					<h5 class="card-header text-center" th:text="${s}"></h5>
