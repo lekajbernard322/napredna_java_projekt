@@ -15,7 +15,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.web.util.NestedServletException;
 
 @RunWith(SpringRunner.class)
@@ -33,7 +32,7 @@ public class ZadatakControllerTest {
 				.with(user("admin").password("password").roles("USER", "ADMIN")))
 		.andExpect(status().isOk())
 		.andExpect(model().attributeExists("projekti", "korisnici"))
-		.andExpect(model().attribute("projekti", Matchers.hasSize(5)))
+		.andExpect(model().attribute("projekti", Matchers.hasSize(6)))
 		.andExpect(model().attribute("korisnici", Matchers.hasSize(6)))
 		.andExpect(view().name("zadatak/novi"));
 	}
