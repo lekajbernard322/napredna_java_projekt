@@ -33,7 +33,7 @@ public class ZadatakControllerTest {
 		.andExpect(status().isOk())
 		.andExpect(model().attributeExists("projekti", "korisnici"))
 		.andExpect(model().attribute("projekti", Matchers.hasSize(6)))
-		.andExpect(model().attribute("korisnici", Matchers.hasSize(6)))
+		.andExpect(model().attribute("korisnici", Matchers.hasSize(7)))
 		.andExpect(view().name("zadatak/novi"));
 	}
 	
