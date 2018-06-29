@@ -18,4 +18,5 @@ public interface ZadatakRepository extends JpaRepository<Zadatak, Integer> {
     List<Zadatak> findAllByAssigneeInAndProjektIn(Collection<Korisnik> korisnici, Collection<Projekt> projekti);
     
     List<Zadatak> findAllByProjekt(Projekt projekt);
+
 }

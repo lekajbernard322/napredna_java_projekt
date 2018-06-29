@@ -54,7 +54,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					.permitAll()
 			.and()
 				.logout()
-					.permitAll();
+					.permitAll()
+					.invalidateHttpSession(true);
 		
 		http.sessionManagement().maximumSessions(1).sessionRegistry(sessionRegistry()).expiredUrl("/login");
 	}
