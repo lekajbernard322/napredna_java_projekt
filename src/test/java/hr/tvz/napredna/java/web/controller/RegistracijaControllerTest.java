@@ -55,7 +55,7 @@ public class RegistracijaControllerTest {
                 .andExpect(status().is3xxRedirection());
     }
 
-    @Test
+    @Test(expected = NestedServletException.class)
     public void testNepotpunoKreirajKorisnika() throws Exception{
         this.mockMvc
                 .perform(post("/registracija")
