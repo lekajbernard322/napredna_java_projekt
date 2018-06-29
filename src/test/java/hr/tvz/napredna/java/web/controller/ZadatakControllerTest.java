@@ -17,6 +17,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.util.NestedServletException;
 
+import hr.tvz.napredna.java.repository.KorisnikRepository;
+import hr.tvz.napredna.java.repository.ProjektRepository;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -25,15 +28,25 @@ public class ZadatakControllerTest {
 	@Autowired
 	private MockMvc mockMvc;
 	
+	@Autowired
+	private KorisnikRepository korisnikRepository;
+	
+	@Autowired
+	private ProjektRepository projektRepository;
+	
 	@Test
 	public void testNoviZadatak() throws Exception{
+		
+		long projektCount = projektRepository.count();
+		long korisnikCount = korisnikRepository.count();
+		
 		this.mockMvc
 		.perform(get("/zadatak/novi")
 				.with(user("admin").password("password").roles("USER", "ADMIN")))
 		.andExpect(status().isOk())
 		.andExpect(model().attributeExists("projekti", "korisnici"))
-		.andExpect(model().attribute("projekti", Matchers.hasSize(6)))
-		.andExpect(model().attribute("korisnici", Matchers.hasSize(7)))
+		.andExpect(model().attribute("projekti", Matchers.hasSize((int)projektCount)))
+		.andExpect(model().attribute("korisnici", Matchers.hasSize((int)korisnikCount)))
 		.andExpect(view().name("zadatak/novi"));
 	}
 	
