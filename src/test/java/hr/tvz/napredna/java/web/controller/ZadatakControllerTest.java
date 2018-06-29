@@ -16,6 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.web.util.NestedServletException;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -38,7 +39,7 @@ public class ZadatakControllerTest {
 	}
 	
 	@Test
-	public void testSpremiNoviZadatak() throws Exception{
+	public void testSpremiNoviZadatakSuccess() throws Exception{
 		this.mockMvc
 		.perform(post("/zadatak/novi")
 				.param("projekt", "1")
@@ -50,8 +51,11 @@ public class ZadatakControllerTest {
 				.param("datumOcekivano", "2018-07-01")
 				.param("assignee", "1")
 				.with(user("admin").password("password").roles("USER", "ADMIN")))
-		.andExpect(status().is3xxRedirection());
-		
+		.andExpect(status().is3xxRedirection());	
+	}
+	
+	@Test
+	public void testSpremiNoviZadatakFail() throws Exception{		
 		this.mockMvc
 		.perform(post("/zadatak/novi")
 				.with(user("admin").password("password").roles("USER", "ADMIN")))
@@ -60,22 +64,23 @@ public class ZadatakControllerTest {
 	}
 	
 	@Test
-	public void testDetaljiZadatka() throws Exception{
-		this.mockMvc
-		.perform(get("/zadatak/detalji?id=1")
-				.with(user("admin").password("password").roles("USER", "ADMIN")))
-		.andExpect(status().isOk())
-		.andExpect(model().attributeExists("zadatak", "komentari"));	
-	}
-	
-	@Test
-	public void testSpremiKomentar() throws Exception{
+	public void testSpremiKomentarSuccess() throws Exception{
 		this.mockMvc
 		.perform(post("/zadatak/noviKomentar")
 				.param("tekst", "test komentar")
 				.param("zadatakId", "1")
 				.with(user("admin").password("password").roles("USER", "ADMIN")))
 		.andExpect(status().is3xxRedirection());
+	}
+	
+	@Test(expected = NestedServletException.class)
+	public void testSpremiKomentarFail() throws Exception{
+		this.mockMvc
+		.perform(post("/zadatak/noviKomentar")
+				.param("tekst", "test komentar")
+				.param("zadatakId", "100")
+				.with(user("admin").password("password").roles("USER", "ADMIN")))
+		.andExpect(status().is4xxClientError());
 	}
 	
 	@Test
